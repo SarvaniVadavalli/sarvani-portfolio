@@ -1,9 +1,6 @@
 # Component Inventory & Specification
 
-This document lists all planned component modules for the **Sarvani Portfolio**. These are planning entries that outline expected component responsibilities, props, and status.
-
-> [!NOTE]
-> All entries listed below are planning specifications for future phases. Components will be implemented sequentially according to `docs/PROGRESS.md`.
+This document lists all planned and implemented component modules for the **Sarvani Portfolio**.
 
 ---
 
@@ -11,49 +8,48 @@ This document lists all planned component modules for the **Sarvani Portfolio**.
 
 ### `Navbar`
 - **Location**: `src/components/layout/Navbar.jsx`
-- **Description**: Top header navigation containing brand logo, section navigation links, and contact CTA.
-- **Key Responsibilities**: Sticky position, mobile menu drawer toggle, scroll-active link highlighting.
-- **Status**: PLANNED (Phase 2)
+- **Description**: Sticky header navigation containing brand logo (`SARVANI.`), responsive desktop/mobile section links (`#projects`, `#about`, `#capabilities`, `#experience`, `#achievements`, `#contact`), CTA button, and accessible mobile menu toggle.
+- **Status**: **IMPLEMENTED (Phase 2.1)**
 
 ### `PageContainer`
 - **Location**: `src/components/layout/PageContainer.jsx`
-- **Description**: Root page wrapper providing global max-width constraints, outer gutters, and grid alignment lines.
-- **Status**: PLANNED (Phase 2)
+- **Description**: Reusable layout container enforcing the approved `1400px` maximum content boundary and responsive horizontal padding.
+- **Status**: **IMPLEMENTED (Phase 2.1)**
 
 ### `Section`
 - **Location**: `src/components/layout/Section.jsx`
-- **Description**: Reusable semantic section container (`<section>`) with customizable padding, ID scroll anchors, and brutalist section header tags.
-- **Props**: `id`, `title`, `subtitle`, `children`, `className`.
-- **Status**: PLANNED (Phase 2)
+- **Description**: Semantic section container (`<section>`) with customizable padding, ID scroll anchors (`scroll-mt-16`), and structural borders.
+- **Props**: `id`, `children`, `className`, `containerClassName`.
+- **Status**: **IMPLEMENTED (Phase 2.1)**
 
 ### `Footer`
 - **Location**: `src/components/layout/Footer.jsx`
-- **Description**: Page footer containing copyright notice, colophon details, social media links, and scroll-to-top trigger.
-- **Status**: PLANNED (Phase 2)
+- **Description**: Page footer containing copyright notice, colophon details, social media anchor links, and scroll-to-top trigger (`#hero`).
+- **Status**: **IMPLEMENTED (Phase 2.1)**
 
 ---
 
 ## 2. Hero Components
 
 ### `Hero`
-- **Location**: `src/components/hero/Hero.jsx`
-- **Description**: Root component for the hero section combining statement typography, interactive name, editorial image, and meta badges.
-- **Status**: PLANNED (Phase 3)
+- **Location**: `src/components/sections/hero/Hero.jsx`
+- **Description**: Root component for the hero section combining asymmetrical 12-column editorial grid, 3D Letter Swap name, editorial portrait frame, technical metadata, and clean dark canvas background.
+- **Status**: **IMPLEMENTED (Phase 3.1 & Phase 3.2)**
 
 ### `HeroName`
-- **Location**: `src/components/hero/HeroName.jsx`
-- **Description**: Prominent name display (`SARVANI`) integrating the signature 3D Letter Swap effect on hover/focus.
-- **Status**: PLANNED (Phase 3)
+- **Location**: `src/components/sections/hero/HeroName.jsx`
+- **Description**: Prominent name display (`SARVANI VADAVALLI`) in `Space Grotesk` display typography, featuring 3D Letter Swap interaction on hover/focus.
+- **Status**: **IMPLEMENTED (Phase 3.1)**
 
 ### `HeroImage`
-- **Location**: `src/components/hero/HeroImage.jsx`
-- **Description**: Editorial portrait/composition container featuring techno-brutalist border framing and metadata overlays.
-- **Status**: PLANNED (Phase 3)
+- **Location**: `src/components/sections/hero/HeroImage.jsx`
+- **Description**: Editorial portrait container displaying the owner's portrait (`src/assets/1.jpeg`) with monochrome filter art-direction, techno-brutalist border framing, metadata overlays, and subtle parallax pointer response.
+- **Status**: **IMPLEMENTED (Phase 3.1 & Phase 3.2)**
 
 ### `HeroMeta`
-- **Location**: `src/components/hero/HeroMeta.jsx`
-- **Description**: Metadata badges displaying current status (e.g., "AVAILABLE FOR PROJECTS"), location, and primary role title.
-- **Status**: PLANNED (Phase 3)
+- **Location**: `src/components/sections/hero/HeroMeta.jsx`
+- **Description**: Technical metadata badges displaying availability status ("AVAILABLE FOR PROJECTS"), location ("INDIA // REMOTE"), and specialization tags (`AI / ML`, `COMPUTER VISION`, `FULL STACK`, `CSE / AIML`).
+- **Status**: **IMPLEMENTED (Phase 3.1)**
 
 ---
 
@@ -121,14 +117,13 @@ This document lists all planned component modules for the **Sarvani Portfolio**.
 
 ### `RadialFlow`
 - **Location**: `src/components/animations/RadialFlow.jsx`
-- **Description**: Background Canvas/CSS component rendering radial center-flow gradient and particle transitions.
-- **Status**: PLANNED (Phase 4)
+- **Description**: Secondary/transition Canvas background effect rendering radial center-flow gradient and particle directional ticks.
+- **Status**: PLANNED SECONDARY TRANSITION EFFECT
 
 ### `LetterSwap`
-- **Location**: `src/components/animations/LetterSwap.jsx`
-- **Description**: Reusable 3D letter swapping text effect primitive for interactive headings.
-- **Props**: `text`, `speed`, `trigger`.
-- **Status**: PLANNED (Phase 3)
+- **Location**: `src/components/sections/hero/HeroName.jsx`
+- **Description**: 3D letter swapping text effect primitive for interactive headings.
+- **Status**: **IMPLEMENTED (Phase 3.1)**
 
 ### `BlinkingSquares`
 - **Location**: `src/components/animations/BlinkingSquares.jsx`

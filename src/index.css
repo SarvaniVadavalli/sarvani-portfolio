@@ -1,14 +1,150 @@
 @import "tailwindcss";
 
-/* Base reset & typography setup placeholder for Phase 1 */
+/* 
+ * SARVANI PORTFOLIO — APPROVED DESIGN SYSTEM TOKENS (PHASE 1.2 & PHASE 2.2)
+ * Techno-brutalist + Editorial + High Contrast
+ */
+
+@theme {
+  /* Color Palette Tokens */
+  --color-bg-base: #09090B;
+  --color-surface-base: #121215;
+  --color-border-base: #27272A;
+  --color-text-main: #FAFAFA;
+  --color-text-sub: #A1A1AA;
+  --color-accent-red: #FF2E2E;
+
+  /* Typography Stack Tokens */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Geometry & Radius Tokens (Strict 0px - 2px max) */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-max: 2px;
+
+  /* Spacing Scale Tokens */
+  --spacing-space-1: 4px;
+  --spacing-space-2: 8px;
+  --spacing-space-3: 12px;
+  --spacing-space-4: 16px;
+  --spacing-space-6: 24px;
+  --spacing-space-8: 32px;
+  --spacing-space-12: 48px;
+  --spacing-space-16: 64px;
+  --spacing-space-24: 96px;
+  --spacing-space-32: 128px;
+}
+
+/* Base Body Reset & Selection/Focus Behavior */
 :root {
   color-scheme: dark;
 }
 
-body {
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html, body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
   margin: 0;
+  padding: 0;
   min-height: 100vh;
-  background-color: #0d0d0d;
-  color: #f3f3f3;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Text Selection */
+::selection {
+  background-color: #FF2E2E;
+  color: #09090B;
+}
+
+/* Accessible Focus Outlines */
+:focus-visible {
+  outline: 2px solid #FF2E2E;
+  outline-offset: 2px;
+}
+
+/* Reusable Global Container Pattern (Max content boundary: 1400px) */
+.portfolio-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;   /* 16px mobile */
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-container {
+    padding-left: 1.5rem; /* 24px tablet */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-container {
+    padding-left: 2rem;   /* 32px desktop */
+    padding-right: 2rem;
+  }
+}
+
+/* Responsive Editorial Grid Utility */
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* Mobile 4 columns */
+  gap: 1rem; /* 16px mobile gap */
+}
+
+@media (min-width: 768px) {
+  .editorial-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr)); /* Tablet 6 columns */
+    gap: 1.5rem; /* 24px tablet gap */
+  }
+}
+
+@media (min-width: 1024px) {
+  .editorial-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr)); /* Desktop 12 columns */
+    gap: 2rem; /* 32px desktop gap */
+  }
+}
+
+/* Typography Utility Helper Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+}
+
+/* Brutalist Surface & Border Utility Classes */
+.surface-card {
+  background-color: var(--color-surface-base);
+  border: 1px solid var(--color-border-base);
+  border-radius: var(--radius-sm);
+}
+
+.border-brutalist {
+  border: 1px solid var(--color-border-base);
+}
+
+.border-brutalist-accent {
+  border: 1px solid var(--color-accent-red);
 }

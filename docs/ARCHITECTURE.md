@@ -1,6 +1,6 @@
 # Application Architecture Overview
 
-This document describes the high-level technical architecture, component layout, styling strategy, and performance considerations for the **Sarvani Portfolio**.
+This document describes the technical architecture, layout structure, styling strategy, and performance considerations for the **Sarvani Portfolio**.
 
 ---
 
@@ -8,99 +8,65 @@ This document describes the high-level technical architecture, component layout,
 
 - **Core Engine**: Single Page Application (SPA) built with **React 19** and bundled with **Vite**.
 - **Language**: Standard JavaScript (JSX) for lightweight, rapid development without type compilation overhead.
-- **State Management**: Local component state (`useState`, `useRef`, `useContext` where necessary). No heavy global state libraries (e.g., Redux/Zustand) required for a portfolio site.
-- **DOM Structure**: Continuous single-page scroll layout divided into semantic sections.
+- **State Management**: Local component state (`useState`, `useRef`). No heavy global state libraries required.
+- **DOM Structure**: Continuous single-page scroll layout assembled with semantic landmark elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`).
 
 ---
 
-## 2. Component Structure
+## 2. Implemented Component Architecture (Phase 4.1)
 
-The component hierarchy is organized into logical feature folders:
+The application component tree is organized into single-responsibility modules:
 
 ```
 src/
-├── App.jsx                     # Top-level shell and continuous section composition
+├── App.jsx                     # Single-page continuous shell composing Navbar, Hero, Section placeholders, and Footer
 ├── main.jsx                    # React root entry point
 ├── index.css                   # Tailwind v4 import & design system token definitions
 ├── components/
-│   ├── layout/                 # Global structural frames
+│   ├── layout/                 # Global structural frames (IMPLEMENTED Phase 2.1)
 │   │   ├── Navbar.jsx          # Sticky header navigation
-│   │   ├── PageContainer.jsx   # Layout boundary wrapper
-│   │   ├── Section.jsx         # Section container with semantic tag & scroll anchor
-│   │   └── Footer.jsx          # Page footer
-│   ├── hero/                   # Hero section components
-│   │   ├── Hero.jsx            # Hero section root
-│   │   ├── HeroName.jsx        # Name header with 3D Letter Swap
-│   │   ├── HeroImage.jsx       # Editorial image presentation
-│   │   └── HeroMeta.jsx        # Status tags & quick details
-│   ├── about/                  # About & bio section
-│   ├── capabilities/           # Tech stack & skills matrix
-│   ├── projects/               # Project showcases & card items
-│   ├── experience/             # Career timeline & experience
-│   ├── achievements/           # Key achievements & highlights
-│   ├── contact/                # Contact form & social channels
-│   └── animations/             # Reusable interactive motion primitives
-│       ├── RadialFlow.jsx      # Background radial center-flow effect
-│       ├── LetterSwap.jsx      # 3D Letter Swap interactive effect
-│       └── BlinkingSquares.jsx # Micro-interaction decorative grid
-└── assets/                     # Images, icons, static resources
+│   │   ├── PageContainer.jsx   # Reusable 1400px boundary wrapper
+│   │   ├── Section.jsx         # Reusable semantic section container with scroll anchors
+│   │   └── Footer.jsx          # Structural page footer
+│   ├── sections/
+│   │   └── hero/               # Hero section components (IMPLEMENTED Phase 3.1 & 3.2)
+│   │       ├── Hero.jsx        # Hero root composition (12-col editorial grid + Threads background)
+│   │       ├── HeroName.jsx    # Display name header with 3D Letter Swap
+│   │       ├── HeroImage.jsx   # Editorial portrait presentation (src/assets/1.jpeg)
+│   │       └── HeroMeta.jsx    # Monospace availability badges & specialization tags
+│   ├── about/                  # About section components (Phase 6)
+│   ├── capabilities/           # Skills & tech matrix (Phase 6)
+│   ├── projects/               # Portfolio project showcases (Phase 5)
+│   ├── experience/             # Career timeline (Phase 6)
+│   ├── achievements/           # Key achievements (Phase 6)
+│   ├── contact/                # Contact section (Phase 7)
+│   └── animations/             # Reusable motion primitives
+│       ├── Threads.jsx         # Primary Hero atmospheric background (IMPLEMENTED Phase 4.1)
+│       └── RadialFlow.jsx      # Secondary section transition effect (Phase 4.2)
+└── assets/
+    └── 1.jpeg                  # Owner editorial portrait asset
 ```
 
 ---
 
-## 3. Page / Section Structure
+## 3. Page / Section Navigation Anchor Flow
 
-The application renders a single scrollable page with the following section flow:
-
-1. **Navbar**: Fixed header with logo, section jump links, and action button.
-2. **Hero Section**: Statement header, 3D letter swap name, image showcase, meta information.
-3. **About Section**: Editorial summary, technical philosophy, personal statement.
-4. **Capabilities Section**: Technical skills, architecture capabilities, tools matrix.
-5. **Projects Section**: Interactive project showcase cards with technical details.
-6. **Experience Section**: Career timeline, key roles, impact metrics.
-7. **Achievements Section**: Selected awards, publications, or key highlights.
-8. **Contact Section**: Interactive reach-out interface and links.
-9. **Footer**: Copyright, colophon, and bottom navigation.
+1. **`Navbar`** (`sticky top-0 z-50`): Brand logo (`SARVANI.`) pointing to `#hero`, navigation links pointing to `#projects`, `#about`, `#capabilities`, `#experience`, `#achievements`, `#contact`.
+2. **`#hero` Section**: Complete Hero cover featuring `Threads` signal wave background, `Space Grotesk` display name, 3D Letter Swap, portrait card, and technical metadata matrix.
+3. **`#about` Section**: Structural boundary for bio summary and engineering philosophy.
+4. **`#capabilities` Section**: Structural boundary for technical skills matrix.
+5. **`#projects` Section**: Structural boundary for project showcases grid.
+6. **`#experience` Section**: Structural boundary for career timeline.
+7. **`#achievements` Section**: Structural boundary for key metrics and honors.
+8. **`#contact` Section**: Structural boundary for contact form and links.
+9. **`Footer`**: Copyright, colophon, and top anchor link (`#hero`).
 
 ---
 
-## 4. Assets Organization
+## 4. Threads Background Architecture & Performance (Phase 4.1)
 
-- Static assets reside in `public/` (favicons, manifest) and `src/assets/` (processed media, icons).
-- Images formatted in WebP/SVG for optimal compression and clarity.
-- Dynamic asset imports handled via standard Vite ES module imports.
-
----
-
-## 5. Styling Approach
-
-- **Tailwind CSS v4**: Utility-first CSS engine integrated directly via `@tailwindcss/vite`.
-- **Design Tokens**: Color, typography, and spacing variables declared in `src/index.css`.
-- **Responsive Layout**: Tailwind flexbox and CSS grid utilities (`grid-cols-1 md:grid-cols-12`).
-- **No Heavy CSS Preprocessors**: Standard CSS features combined with Tailwind utility classes.
-
----
-
-## 6. Animation & Effects Organization
-
-- Motion components isolated inside `src/components/animations/`.
-- GPU-accelerated transforms (`transform: translate3d / rotateX / scale`, `opacity`).
-- Event listeners for cursor/scroll tracking throttled with `requestAnimationFrame`.
-- Graceful fallbacks for reduced-motion preferences (`prefers-reduced-motion`).
-
----
-
-## 7. Accessibility Considerations
-
-- Semantic HTML tags (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`).
-- Standard focus rings and keyboard focus management across all interactive controls.
-- Explicit `aria-label` attributes on icon buttons and dynamic interactive elements.
-- Accessible color contrast ratios (WCAG AA/AAA compliant).
-
----
-
-## 8. Performance Considerations
-
-- Code splitting via dynamic `import()` for non-critical section modules.
-- Lazy-loading for below-the-fold project images using `loading="lazy"`.
-- Minimal third-party dependency overhead to maintain sub-100KB initial JS bundle size goal.
+- **React Bits Threads Concept**: Art-directed to the Sarvani Portfolio design system. Draws technical signal lines across an HTML5 `<canvas>` element.
+- **Color & Opacity**: Utilizes low-opacity off-white (`rgba(250, 250, 250, 0.05-0.08)`) with a single sparse Sharp Red accent thread (`rgba(255, 46, 46, 0.22)`).
+- **Pointer Interaction**: Subtle cursor deflection interpolated smoothly (`mouse.x += (target - mouse.x) * 0.04`) without trail effects or camera chasing.
+- **Layering**: Positioned behind Hero content (`-z-10 pointer-events-none`) with zero input blocking or layout shifts.
+- **Reduced Motion**: Listens to `@media (prefers-reduced-motion: reduce)` and pauses `requestAnimationFrame` while keeping a static thread composition.

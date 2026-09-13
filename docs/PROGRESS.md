@@ -1,9 +1,9 @@
 # Project Progress Tracker
 
-**Current Phase**: Phase 0 — Repository Foundation & Documentation  
-**Overall Completion**: 9%  
-**Last Completed Task**: Setup Vite + React + Tailwind CSS foundation and project configuration  
-**Next Task**: Initialize Phase 1 — Design System tokens & aesthetic definitions  
+**Current Phase**: Phase 3 — Hero Section & Micro-Interactions (Completed Baseline)  
+**Overall Completion**: 48%  
+**Last Completed Task**: Phase 4.1 Finalization — Threads background experiment removed after evaluation; Hero restored to clean, stable baseline  
+**Next Task**: Phase 4.2 — Background Section Transition System & Section Integration  
 
 ---
 
@@ -18,17 +18,28 @@
 | Phase 0 | Create core documentation system (`README.md`, `AGENTS.md`) | COMPLETED | Established guidelines & setup docs |
 | Phase 0 | Create technical docs (`PROGRESS.md`, `DESIGN-SYSTEM.md`, `DECISIONS.md`, `ARCHITECTURE.md`, `COMPONENTS.md`) | COMPLETED | All doc files initialized |
 | Phase 0 | Verify dependency installation & build execution | COMPLETED | Verified clean install and `npm run build` |
-| Phase 1 | Define confirmed color tokens & high-contrast rules | NOT STARTED | Techno-brutalist high contrast palette |
-| Phase 1 | Select typography stack (Headings, Body, Monospace) | NOT STARTED | Editorial + technical font pairings |
-| Phase 1 | Define grid & spacing scale in Tailwind config / CSS | NOT STARTED | Structured layout grid |
-| Phase 2 | Build `PageContainer` and `Navbar` components | NOT STARTED | Core navigation shell |
-| Phase 2 | Build reusable `Section` container wrapper | NOT STARTED | Layout section structure |
-| Phase 2 | Build global `Footer` shell component | NOT STARTED | Structural footer |
-| Phase 3 | Implement `Hero` section layout | NOT STARTED | Editorial hero layout |
-| Phase 3 | Implement `HeroName` with 3D Letter Swap effect | NOT STARTED | Signature interactive hero name |
-| Phase 3 | Implement `HeroImage` & `HeroMeta` components | NOT STARTED | Metadata & editorial image slot |
-| Phase 4 | Implement `RadialFlow` background transition effect | NOT STARTED | Center-flow radial transition |
-| Phase 4 | Integrate background treatment across main sections | NOT STARTED | Section transition logic |
+| Phase 1.1 | Conduct Design Exploration Pass & document proposals | COMPLETED | Color options, typography candidates, grid proposal |
+| Phase 1.2 | Define approved color tokens (`#09090B`, `#121215`, `#27272A`, `#FAFAFA`, `#A1A1AA`, `#FF2E2E`) | COMPLETED | Configured in Tailwind v4 `@theme` block & CSS |
+| Phase 1.2 | Configure Google Fonts typography stack (`Space Grotesk`, `Inter`, `JetBrains Mono`) | COMPLETED | Added preconnect & font weights in `index.html` |
+| Phase 1.2 | Implement 12/6/4 responsive grid & 1400px maximum container boundary | COMPLETED | Implemented `.portfolio-container` & `.editorial-grid` |
+| Phase 1.2 | Establish 8pt spacing scale & 0-2px geometry policy | COMPLETED | Implemented radius & spacing tokens |
+| Phase 1.2 | Implement accessibility focus outlines & selection styling | COMPLETED | High contrast selection & `:focus-visible` styles |
+| Phase 2.1 | Create reusable `PageContainer` wrapper (1400px max boundary) | COMPLETED | `src/components/layout/PageContainer.jsx` |
+| Phase 2.1 | Create reusable semantic `Section` wrapper with scroll anchors | COMPLETED | `src/components/layout/Section.jsx` |
+| Phase 2.1 | Build responsive `Navbar` (Desktop nav + Mobile drawer toggle) | COMPLETED | `src/components/layout/Navbar.jsx` |
+| Phase 2.1 | Build semantic `Footer` with copyright & anchor links | COMPLETED | `src/components/layout/Footer.jsx` |
+| Phase 2.1 | Assemble structural single-page application shell in `App.jsx` | COMPLETED | Structural placeholders for Hero, About, Capabilities, Projects, Experience, Achievements, Contact |
+| Phase 2.2 | Perform Desktop/Mobile Navigation Audit & Accessibility Audit | COMPLETED | Verified anchor mapping, focus rings, ARIA tags |
+| Phase 2.2 | Implement CSS `scroll-mt-16` offset for sticky navbar overlay protection | COMPLETED | Section headlines render cleanly below sticky h-16 header |
+| Phase 2.2 | Verify responsive layouts across desktop, tablet, and mobile | COMPLETED | Zero horizontal overflow, fluid container gutters |
+| Phase 3.1 | Implement `Hero.jsx` asymmetrical 12-column editorial layout | COMPLETED | `src/components/sections/hero/Hero.jsx` |
+| Phase 3.1 | Implement `HeroName.jsx` with 3D Letter Swap effect | COMPLETED | `Space Grotesk` display name header |
+| Phase 3.1 | Implement `HeroImage.jsx` with portrait framing | COMPLETED | Integrated brutalist framing & metadata overlays |
+| Phase 3.1 | Implement `HeroMeta.jsx` technical metadata matrix | COMPLETED | Status badge & specialization tags |
+| Phase 3.2 | Art-direct owner portrait (`src/assets/1.jpeg`) with monochrome filter | COMPLETED | Preserved facial detail, muted outdoor green into dark charcoal |
+| Phase 3.2 | Implement restrained pointer parallax on `HeroImage` (max 8px) | COMPLETED | Supports `@media (prefers-reduced-motion: reduce)` |
+| Phase 4.1 | Experiment with Threads Hero background | REMOVED | Threads background removed after evaluation as it did not provide reliable visual integration |
+| Phase 4.2 | Implement background section transition system & `RadialFlow` integration | NOT STARTED | Section transition logic |
 | Phase 5 | Implement `ProjectsSection` layout & filtering grid | NOT STARTED | Project showcase grid |
 | Phase 5 | Implement `ProjectItem` cards with technical meta | NOT STARTED | High-contrast project cards |
 | Phase 6 | Implement `CapabilitiesSection` tech matrix | NOT STARTED | Technical skills breakdown |
