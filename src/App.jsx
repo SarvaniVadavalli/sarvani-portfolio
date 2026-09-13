@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import Navbar from './components/layout/Navbar';
 import Section from './components/layout/Section';
 import Footer from './components/layout/Footer';
@@ -12,6 +12,23 @@ export default function App() {
   const [isEntering, setIsEntering] = useState(false);
   const isEnteringRef = useRef(false);
 
+  useEffect(() => {
+    if (!hasEntered) {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      window.scrollTo(0, 0);
+      const heroEl = document.getElementById('hero');
+      if (heroEl) {
+        heroEl.scrollIntoView({ behavior: 'instant' });
+      }
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [hasEntered]);
+
   const handleEnterPortfolio = useCallback(() => {
     if (isEnteringRef.current || hasEntered) return;
     isEnteringRef.current = true;
@@ -20,10 +37,6 @@ export default function App() {
     setTimeout(() => {
       setHasEntered(true);
       setIsEntering(false);
-      const heroEl = document.getElementById('hero');
-      if (heroEl) {
-        heroEl.scrollIntoView({ behavior: 'smooth' });
-      }
     }, 600);
   }, [hasEntered]);
 

@@ -163,13 +163,13 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ### `Landing`
 - **Location**: `src/components/sections/landing/Landing.jsx`
-- **Description**: Dedicated `100vh` entrance gate component rendered before the Hero section. Features centered title (`WELCOME TO MY<br />WORK.`), header (`SARVANI.` top-left, `PORTFOLIO ENTRY // 2026` top-right), and a minimal bottom footer containing a text-only `[ ENTER ]` action button (`text-[#FF2E2E]` hovering to `#FAFAFA`). Includes window keydown (`Enter`) and scroll/swipe listeners wired to a unified `enterPortfolio()` transition handler.
-- **Status**: **IMPLEMENTED & REFINED (Phase 4 Visual Correction #4)**
+- **Description**: Dedicated `100svh` entrance title screen rendered before the Hero section. Features centered title (`WELCOME TO MY<br />WORK.`), top header (`SARVANI.` top-left, `PORTFOLIO ENTRY // 2026` top-right), label `INTERACTIVE ARCHITECTURE`, text-only `[ ENTER ]` action trigger (hovering to `#FF2E2E`), and bottom-right `SCROLL TO ENTER ↓` indicator. Includes window keydown (`Enter`), button click, and scroll/swipe listeners wired to a unified `enterPortfolio()` transition handler. Renders background `<RippleGrid />`.
+- **Status**: **IMPLEMENTED (Phase 4.9.5 RippleGrid)**
 
-### `SlicedWaves`
-- **Location**: `src/components/animations/SlicedWaves.jsx`
-- **Description**: WebGL GLSL generative background component featuring 12 straight horizontal segment layers with fixed $Y$ base levels, subtle luminance (glow magnitude strictly 0.08–0.15 with rapid exponential falloff), layered horizontal motion at alternating slow speeds, 85-90% grayscale (`#27272A`, `#52525B`, `#A1A1AA`, `#FAFAFA`) with 10-15% selective Sharp Red (`#FF2E2E`) accents, subtle central readability mask (`textReadabilityFactor`), horizontal slice retraction transition on portfolio entry (`~700ms`), and `@media (prefers-reduced-motion: reduce)` fallback.
-- **Status**: **IMPLEMENTED & REFINED (Phase 4 Visual Correction #4)**
+### `RippleGrid`
+- **Location**: `src/components/animations/RippleGrid.jsx`
+- **Description**: WebGL GLSL shader background component based on React Bits RippleGrid. Renders a sparse, dark, atmospheric grid (`gridSize: 6.5`, `gridThickness: 7`, `gridColor: #3F3F46`, `opacity: 0.48`, `vignetteStrength: 1.5`, `fadeDistance: 1.8`, `glowIntensity: 0.035`), central dark vignette fade, dynamic pointer ripple wave propagation (`rippleIntensity: 0.035`, `mouseInteractionRadius: 0.65`), smooth retraction transition on portfolio entrance, and `@media (prefers-reduced-motion: reduce)` fallback. Replaces `AcidSquares`.
+- **Status**: **IMPLEMENTED (Phase 4.9.5)**
 
 ### `BlinkingSquares`
 - **Location**: `src/components/animations/BlinkingSquares.jsx`

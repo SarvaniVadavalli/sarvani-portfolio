@@ -348,3 +348,110 @@ This log records all key architectural, technical, visual, and design decisions 
 - **Reason**: Eliminates neon glowing light trails and wave distortion while establishing a balanced, centered editorial cover layout.
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-13
+
+---
+
+### Decision 37: Landing Page Background Replacement with React Bits Acid Squares (`AcidSquares.jsx`, `Landing.jsx`)
+- **Decision**: Replaced `SlicedWaves.jsx` on the Landing screen with WebGL GLSL shader component `AcidSquares.jsx`, adapting the React Bits Acid Squares pattern to the portfolio's monochrome/red design system.
+- **Details**:
+  - **Shader Configuration**: `density = 8`, `waveDepth = 0.55`, `zoom = 1.15`, `speed = 0.45`, `glow = 0.18`, `contrast = 1.05`, `brightness = 0.8`, `opacity = 0.78`, `grainIntensity = 0.025`, `mouseStrength = 0.06`, `mouseRadius = 0.35`.
+  - **Color Palette Policy**: Uses `#121215` (surface dark), `#3F3F46` (muted zinc), `#FAFAFA` (white highlight), and selective `#FF2E2E` (sharp red accent signal). Zero purple, violet, blue, cyan, magenta, gold, or neon colors.
+  - **Content & Layout Hierarchy**: Preserved centered typography (`WELCOME TO MY<br />WORK.`, `INTERACTIVE ARCHITECTURE`, `COMPUTER SCIENCE × AI / ML`, rectangular `[ ENTER ]` button, top identification header, and bottom scroll footer).
+  - **Viewport**: Set container height to `100svh` to eliminate mobile browser viewport overflow issues.
+- **Reason**: Replaces 2D horizontal slices with a dynamic, atmospheric 3D WebGL shader field that frames the centered typography and creates anticipation upon portfolio entry.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-13
+
+---
+
+### Decision 38: Landing Page Final Simplification (`AcidSquares.jsx`, `Landing.jsx`)
+- **Decision**: Simplified the Landing page content and visual density to create a minimal, spacious title screen with a dark, subtle AcidSquares atmospheric background.
+- **Details**:
+  - **Content Simplification**: Removed `COMPUTER SCIENCE × AI / ML` and `PRESS ENTER OR SCROLL TO CONTINUE`. Replaced the rectangular brutalist `[ ENTER ]` button with a simple monospace text link (`[ ENTER ]`) featuring `#A1A1AA` base color and `#FF2E2E` hover text color (zero button border, zero fill, zero shadow, zero glow). Retained `SCROLL TO ENTER ↓` aligned bottom-right.
+  - **Shader Tuning**: Adjusted `AcidSquares.jsx` parameters for subtle dark depth: `glow: 0.08`, `brightness: 0.55`, `opacity: 0.42`, `density: 8`, `waveDepth: 0.45`, `speed: 0.35`, `contrast: 0.95`, `mouseStrength: 0.04`, `mouseRadius: 0.30`.
+  - **Palette & Shader Cleanup**: Palette set to neutral darks `#09090B`, `#18181B`, `#52525B`. Removed all red pulse shader calculations from `AcidSquares.jsx` (red reserved strictly for UI elements like the period after `WORK.`).
+  - **Viewport**: Enforced `100svh` container height with centered horizontal alignment and spacious negative padding.
+- **Reason**: Shifts Landing focus from heavy shader effects to negative space and high-contrast typography, presenting a refined entrance experience.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-13
+
+---
+
+### Decision 39: Playful & Mouse Responsive AcidSquares Interaction (`AcidSquares.jsx`)
+- **Decision**: Enhanced the mouse interaction math in `AcidSquares.jsx` to make the dark volumetric background visibly push, bend, and ripple in response to cursor movement without increasing glow or altering colors.
+- **Details**:
+  - **Shader Math**: Updated GLSL displacement with directional unit vector push (`mouseDir * mouseImpact * uMouseStrength`) plus a localized surface wave ripple (`sin(mouseDist * 16.0 - t * 2.5) * 0.012 * mouseImpact`).
+  - **Parameter Tuning**: Set `mouseStrength = 0.11` (range 0.08–0.14) and `mouseRadius = 0.35`. Updated pointer lerp tracking factor to `0.09` in JS animation loop for smooth, responsive cursor tracking.
+  - **Locked Aesthetics**: Glow remains low (`glow = 0.08`), brightness subdued (`0.55`), opacity restrained (`0.42`), palette neutral (`#09090B`, `#18181B`, `#52525B`), typography and layout completely locked.
+- **Reason**: Delivers an organic, playful tactile interaction that immediately responds to cursor velocity and direction while preserving dark visual restraint and central legibility.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-13
+
+---
+
+### Decision 40: Restore AcidSquares Shader Visibility & Parameters (`AcidSquares.jsx`, `Landing.jsx`)
+- **Decision**: Restored visible WebGL shader rendering for `AcidSquares.jsx` on the Landing page, adjusting tone levels and opacity to ensure clear background presence without overwhelming centered typography.
+- **Details**:
+  - **Color Palette & Edge Visibility**: Set `color1: #09090B`, `color2: #27272A`, `color3: #71717A` with grid edge boost (`squareEdge * 0.35 + glowEffect * 0.45`).
+  - **Shader Parameters**: `opacity: 0.62`, `brightness: 0.72`, `waveDepth: 0.65`, `glow: 0.12`, `speed: 0.45`, `density: 8`, `zoom: 1.15`, `exposure: 3500`, `mouseStrength: 0.10`, `mouseRadius: 0.35`, `grainIntensity: 0.02`.
+  - **Center Vignette Adjustment**: Refactored the center readability mask (`0.55 + 0.45 * readability`) so the shader geometry remains visibly active and animated across the entire viewport while preserving centered title contrast.
+  - **Zero Layout Changes**: Kept centered Landing content (`WELCOME TO MY WORK.`, `INTERACTIVE ARCHITECTURE`, `[ ENTER ]`, `SCROLL TO ENTER ↓`) and all subsequent portfolio sections 100% locked.
+- **Reason**: Guarantees that the AcidSquares WebGL canvas renders as an active, dark, visible background layer immediately upon page load without being obscured by over-aggressive center masking or low opacity.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 41: AcidSquares GLSL Shader Variable Scope Fix & Visual Verification (`AcidSquares.jsx`)
+- **Decision**: Diagnosed and fixed GLSL fragment shader compilation error caused by using variable `t` before declaration in mouse displacement calculation. Verified active WebGL canvas rendering via browser subagent.
+- **Details**:
+  - **Root Cause Analysis**: `FRAGMENT_SHADER` in `AcidSquares.jsx` referenced variable `t` on line 60 inside mouse displacement calculation (`sin(mouseDist * 16.0 - t * 2.5)`) prior to its declaration `float t = uTime * uSpeed;` on line 66. GLSL ES 3.0 strictly forbids using undeclared variables, causing `gl.compileShader()` to fail silently, log a compilation error to `console.error`, and return `null`, aborting WebGL program linking and leaving the canvas completely black/flat.
+  - **The Fix**: Moved `float t = uTime * uSpeed;` to the very top of `main()` in `FRAGMENT_SHADER`, immediately resolving shader compilation.
+  - **Browser Visual Verification**: Executed live browser inspection via `browser_subagent` at `http://localhost:5173`. Confirmed WebGL canvas is actively mounted (`z-0`), rendering dark volumetric square grid geometry (`#09090B`, `#27272A`, `#71717A`), smoothly animating across animation frames, and displacement-warping under pointer movement.
+- **Reason**: Restores active WebGL GLSL shader execution on the Landing screen while keeping typography, layout, and performance 100% intact.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 42: Fluid Organic AcidSquares Shader Architecture (`AcidSquares.jsx`)
+- **Decision**: Transformed AcidSquares from a dense, rigid ice-box grid into an open, organic, fluid dark surface with zero blue/cyan edge artifacts.
+- **Details**:
+  - **Open Composition Parameters**: Set `density = 5` (larger forms instead of tiny cells), `zoom = 1.35`, `waveDepth = 0.85` (dynamic cell phase variation), `spread = 0.45` (~70% dark negative space, ~30% geometric forms), `speed = 0.35`, `glow = 0.08`, `brightness = 0.60`, `opacity = 0.55`, `mouseStrength = 0.11`, `mouseRadius = 0.35`.
+  - **Elimination of Blue/Cyan Edge Artifacts**: Enforced pure neutral monochrome luminance calculation (`vec3 monoLuma = vec3(dot(baseColor, vec3(0.299, 0.587, 0.114)))`) in GLSL, set `alpha: false` on WebGL context, and initialized `gl.clearColor(0.035, 0.035, 0.043, 1.0)`.
+  - **Zero Layout Changes**: Centered Landing content (`WELCOME TO MY WORK.`, `INTERACTIVE ARCHITECTURE`, `[ ENTER ]`, `SCROLL TO ENTER ↓`) and all subsequent sections remain 100% locked.
+- **Reason**: Replaces rigid tiled box grids with an organic, flowing, responsive technical surface that frames typography cleanly without chromatic edge bleeding.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 43: Replace AcidSquares with React Bits RippleGrid (`RippleGrid.jsx`, `Landing.jsx`)
+- **Decision**: Removed `AcidSquares` from the Landing background and replaced it with `RippleGrid.jsx` based on the React Bits RippleGrid architecture.
+- **Details**:
+  - **Component Location**: `src/components/animations/RippleGrid.jsx`.
+  - **Baseline Parameters**: `enableRainbow = false`, `gridColor = "#3F3F46"`, `rippleIntensity = 0.035`, `gridSize = 6.5`, `gridThickness = 7`, `mouseInteraction = true`, `mouseInteractionRadius = 0.65`, `opacity = 0.48`, `fadeDistance = 1.8`, `vignetteStrength = 1.5`, `glowIntensity = 0.035`, `gridRotation = 0`, `lightMode = false`.
+  - **Strict Color Policy**: Restricts palette strictly to portfolio neutral darks (`#09090B` background, `#3F3F46` grid lines, `#52525B` highlights). Zero purple, violet, blue, cyan, gold, or rainbow colors.
+  - **Interactive Wave Propagation**: Pointer movement generates real-time localized ripple wave propagation through the sparse grid without moving typography or layout elements.
+  - **Zero Layout Changes**: Centered Landing content (`WELCOME TO MY WORK.`, `INTERACTIVE ARCHITECTURE`, `[ ENTER ]`, `SCROLL TO ENTER ↓`) and all subsequent sections remain 100% locked.
+- **Reason**: Replaces box-like grid walls with an open, responsive digital grid surface ("touching a digital architectural surface") that reacts fluidly to pointer movement while maintaining typography legibility.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 44: Reduced Title Scale & Refined Grid Box Dimensions (`Landing.jsx`)
+- **Decision**: Scaled down the Landing title font size and increased grid density so background grid line boxes appear smaller and more detailed.
+- **Details**:
+  - **Typography Scale**: Reduced `WELCOME TO MY<br />WORK.` display title from `text-5xl..text-9xl` to `text-3xl sm:text-5xl md:text-6xl lg:text-7xl` (`leading-tight`), creating a balanced, spacious title composition that leaves ample negative padding around edges.
+  - **Grid Box Refinement**: Increased `RippleGrid` prop `gridSize` from `6.5` to `12.5` (`gridThickness: 5`), rendering smaller, finer, high-precision architectural grid squares across the `#09090B` canvas.
+- **Reason**: Improves typographic elegance and background grid detail, providing a refined title cover layout with tactile cursor ripple interaction.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+
+
+
+
+
+
