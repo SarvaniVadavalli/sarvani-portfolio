@@ -53,7 +53,28 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ---
 
-## 3. About Component
+## 3. Navigation Components
+
+### `CenterFlowSection`
+- **Location**: `src/components/sections/navigation/CenterFlowSection.jsx`
+- **Description**: Dedicated section wrapper placed directly after Hero and before About. Features `GridMotion` (z-0) atmospheric background layer and header (`EXPLORE // NAVIGATE PORTFOLIO` / `RADIAL INDEX // 06 NODES`) over interactive `CenterFlow` (z-10).
+- **Status**: **IMPLEMENTED (Phase 4.2 & Visual Upgrade)**
+
+### `CenterFlow`
+- **Location**: `src/components/animations/CenterFlow.jsx`
+- **Description**: Interactive signature portfolio navigation system. Features identity center node (`SARVANI PORTFOLIO`), SVG flow paths with red `#FF2E2E` signal pulse dots, and outer destination nodes (`01 / ABOUT`, `02 / CAPABILITIES`, `03 / PROJECTS`, `04 / EXPERIENCE`, `05 / ACHIEVEMENTS`, `06 / CONTACT`) with micro-previews (`"Profile + focus"`, `"Selected work"`, etc.). Includes `IntersectionObserver` active section highlighting and `@media (prefers-reduced-motion: reduce)` support.
+- **Status**: **IMPLEMENTED (Phase 4.2 & Visual Upgrade)**
+
+### `GridMotion`
+- **Location**: `src/components/animations/GridMotion.jsx`
+- **Description**: Atmospheric background component for the Center Flow navigation section based on the React Bits GridMotion pattern. Takes `items` (array of custom technical/editorial JSX tiles; zero stock imagery) and `gradientColor` (`#09090B` radial/linear overlay mask). Features 4 staggered rows with GPU-accelerated infinite drift animations, reduced opacity for background layering (`z-0`), and `@media (prefers-reduced-motion: reduce)` pause fallback.
+- **Status**: **IMPLEMENTED (Phase 4.2 Visual Upgrade)**
+
+
+
+---
+
+## 4. About Component
 
 ### `AboutSection`
 - **Location**: `src/components/about/AboutSection.jsx`
@@ -62,7 +83,7 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ---
 
-## 4. Capabilities Component
+## 5. Capabilities Component
 
 ### `CapabilitiesSection`
 - **Location**: `src/components/capabilities/CapabilitiesSection.jsx`
@@ -71,7 +92,7 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ---
 
-## 5. Projects Components
+## 6. Projects Components
 
 ### `ProjectsSection`
 - **Location**: `src/components/projects/ProjectsSection.jsx`
@@ -86,7 +107,7 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ---
 
-## 6. Experience Component
+## 7. Experience Component
 
 ### `ExperienceSection`
 - **Location**: `src/components/experience/ExperienceSection.jsx`
@@ -95,7 +116,7 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ---
 
-## 7. Achievements Component
+## 8. Achievements Component
 
 ### `AchievementsSection`
 - **Location**: `src/components/achievements/AchievementsSection.jsx`
@@ -104,7 +125,7 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ---
 
-## 8. Contact Component
+## 9. Contact Component
 
 ### `ContactSection`
 - **Location**: `src/components/contact/ContactSection.jsx`
@@ -113,7 +134,7 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ---
 
-## 9. Animation & Interaction Components
+## 10. Animation & Interaction Components
 
 ### `RadialFlow`
 - **Location**: `src/components/animations/RadialFlow.jsx`

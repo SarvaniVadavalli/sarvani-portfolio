@@ -148,3 +148,40 @@ html, body {
 .border-brutalist-accent {
   border: 1px solid var(--color-accent-red);
 }
+
+/* Grid Motion Hardware-Accelerated Infinite Drift Animations */
+@keyframes gridDriftLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-33.333%, 0, 0);
+  }
+}
+
+@keyframes gridDriftRight {
+  0% {
+    transform: translate3d(-33.333%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-grid-drift-left {
+  animation: gridDriftLeft 45s linear infinite;
+  will-change: transform;
+}
+
+.animate-grid-drift-right {
+  animation: gridDriftRight 45s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-grid-drift-left,
+  .animate-grid-drift-right {
+    animation: none !important;
+  }
+}
+

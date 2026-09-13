@@ -61,16 +61,26 @@ The palette is built on an exact neutral, high-contrast dark foundation with a s
 
 ---
 
-### 3.3 Approved Threads Background Specification (Phase 4.1)
+### 3.3 Approved Grid Motion & Center Flow Visual Specification (Phase 4.2 Visual Upgrade)
 
-- **Atmospheric Visual Concept**: Inspired by React Bits Threads. Renders slow, calm, architectural signal lines moving continuously across the canvas to establish visual depth behind the Hero.
-- **Color & Opacity**: Low-opacity off-white (`rgba(250, 250, 250, 0.05-0.08)`) lines with a single sparse Sharp Red (`#FF2E2E` `rgba(255, 46, 46, 0.22)`) accent trace line.
-- **Layering & Interaction**: Positioned strictly behind content (`-z-10 pointer-events-none`). Extremely subtle pointer deflection (max 10px shift), zero cursor trails.
-- **Responsive Density**:
-  - Desktop: 18 threads
-  - Tablet: 12 threads
-  - Mobile: 8 threads (reduced animation complexity and opacity)
-- **Reduced Motion**: Automatically pauses continuous animation loop when `@media (prefers-reduced-motion: reduce)` is detected.
+- **Center Flow Navigation Role**: Dedicated signature portfolio navigation system.
+- **Grid Motion Atmospheric Layer**: Used **exclusively** as the subtle background for the Center Flow navigation section.
+  - React Bits Pattern: Implements `<GridMotion items={items} gradientColor="#09090B" />` API architecture.
+  - Zero Stock Imagery: Custom controlled array of 24 technical/editorial JSX tiles (`AI / ML`, `COMPUTER VISION`, `FULL STACK`, `SYSTEMS`, `MODELS`, `SARVANI`, `INDEX`, etc.).
+  - Positioned at `z-0` (`absolute inset-0 pointer-events-none overflow-hidden`).
+  - Palette: `#121215` translucent tile surfaces (`bg-[#121215]/50`), `#27272A` borders, `#FAFAFA` text, `#A1A1AA` muted indexes, `#FF2E2E` accent dots. Fades seamlessly into background via `gradientColor` (`#09090B`) vignette mask.
+  - Motion: 4 staggered horizontal rows with continuous GPU-accelerated infinite drift animations (`animate-grid-drift-left`, `animate-grid-drift-right`).
+  - Mobile/Reduced Motion: Reduced row count and tile density on smaller screens; motion loop automatically paused under `@media (prefers-reduced-motion: reduce)`.
+
+- **Center Node (Technical Identity Marker)**:
+  - Text: `SARVANI PORTFOLIO` + `SYSTEM ACTIVE` status indicator.
+  - Geometry: Sharp borders (`0px`), subtle `#FF2E2E` corner tick markers, flat `#121215` surface.
+- **Outer Navigation Nodes**:
+  - Format: Small index (`01`, `02`, `03`, `04`, `05`, `06`) in `JetBrains Mono` + Section Label (`ABOUT`, `CAPABILITIES`, `PROJECTS`, `EXPERIENCE`, `ACHIEVEMENTS`, `CONTACT`) in `Space Grotesk`.
+  - Contextual Micro-Preview: Compact description shown on hover/focus (`"Profile + focus"`, `"Selected work"`, `"Journey + roles"`, etc.).
+  - Sharp corners, compact interactive controls, keyboard accessible focus outline (`focus-visible:ring-2 focus-visible:ring-[#FF2E2E]`).
+- **Connection Lines**:
+  - `#27272A` SVG track lines with restrained `#FF2E2E` red signal dots traveling along connection paths toward outer nodes.
 
 ---
 
@@ -96,3 +106,4 @@ The palette is built on an exact neutral, high-contrast dark foundation with a s
 - **Corner Radius Policy**: Default radius is `0px` (`rounded-none`). Maximum radius is `2px` (`rounded-sm`).
 - **Borders**: Restrained thin 1px borders (`border-[#27272A]`).
 - **Surfaces**: Flat surfaces (`#09090B`, `#121215`). NO glassmorphism, NO drop shadows, NO glowing cards.
+

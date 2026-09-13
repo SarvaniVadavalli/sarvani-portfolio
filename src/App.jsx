@@ -2,6 +2,7 @@ import Navbar from './components/layout/Navbar';
 import Section from './components/layout/Section';
 import Footer from './components/layout/Footer';
 import Hero from './components/sections/hero/Hero';
+import CenterFlowSection from './components/sections/navigation/CenterFlowSection';
 
 export default function App() {
   return (
@@ -12,14 +13,17 @@ export default function App() {
       {/* Main Content Shell */}
       <main className="flex-1">
         
-        {/* Section 1: Hero Interactive Section (Phase 3.1) */}
+        {/* Section 1: Hero Interactive Section (Phase 3.1 & 3.2) */}
         <Hero />
 
-        {/* Section 2: About Structural Placeholder */}
+        {/* Section 2: Center Flow Interactive Navigation System (Phase 4.2) */}
+        <CenterFlowSection />
+
+        {/* Section 3: About Structural Placeholder */}
         <Section id="about">
           <div className="border border-[#27272A] p-8 space-y-4 bg-[#121215]/50">
             <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-wider">
-              [ SECTION 02 // ABOUT STRUCTURAL SHELL ]
+              [ SECTION 03 // ABOUT STRUCTURAL SHELL ]
             </div>
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-[#FAFAFA]">
               About Section Placeholder
@@ -30,11 +34,11 @@ export default function App() {
           </div>
         </Section>
 
-        {/* Section 3: Capabilities Structural Placeholder */}
+        {/* Section 4: Capabilities Structural Placeholder */}
         <Section id="capabilities">
           <div className="border border-[#27272A] p-8 space-y-4 bg-[#121215]/50">
             <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-wider">
-              [ SECTION 03 // CAPABILITIES STRUCTURAL SHELL ]
+              [ SECTION 04 // CAPABILITIES STRUCTURAL SHELL ]
             </div>
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-[#FAFAFA]">
               Capabilities Section Placeholder
@@ -45,11 +49,11 @@ export default function App() {
           </div>
         </Section>
 
-        {/* Section 4: Projects Structural Placeholder */}
+        {/* Section 5: Projects Structural Placeholder */}
         <Section id="projects">
           <div className="border border-[#27272A] p-8 space-y-4 bg-[#121215]/50">
             <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-wider">
-              [ SECTION 04 // PROJECTS STRUCTURAL SHELL ]
+              [ SECTION 05 // PROJECTS STRUCTURAL SHELL ]
             </div>
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-[#FAFAFA]">
               Projects Showcase Placeholder
@@ -60,11 +64,11 @@ export default function App() {
           </div>
         </Section>
 
-        {/* Section 5: Experience Structural Placeholder */}
+        {/* Section 6: Experience Structural Placeholder */}
         <Section id="experience">
           <div className="border border-[#27272A] p-8 space-y-4 bg-[#121215]/50">
             <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-wider">
-              [ SECTION 05 // EXPERIENCE STRUCTURAL SHELL ]
+              [ SECTION 06 // EXPERIENCE STRUCTURAL SHELL ]
             </div>
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-[#FAFAFA]">
               Experience Section Placeholder
@@ -75,11 +79,11 @@ export default function App() {
           </div>
         </Section>
 
-        {/* Section 6: Achievements Structural Placeholder */}
+        {/* Section 7: Achievements Structural Placeholder */}
         <Section id="achievements">
           <div className="border border-[#27272A] p-8 space-y-4 bg-[#121215]/50">
             <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-wider">
-              [ SECTION 06 // ACHIEVEMENTS STRUCTURAL SHELL ]
+              [ SECTION 07 // ACHIEVEMENTS STRUCTURAL SHELL ]
             </div>
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-[#FAFAFA]">
               Achievements Section Placeholder
@@ -90,11 +94,11 @@ export default function App() {
           </div>
         </Section>
 
-        {/* Section 7: Contact Structural Placeholder */}
+        {/* Section 8: Contact Structural Placeholder */}
         <Section id="contact">
           <div className="border border-[#27272A] p-8 space-y-4 bg-[#121215]/50">
             <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-wider">
-              [ SECTION 07 // CONTACT STRUCTURAL SHELL ]
+              [ SECTION 08 // CONTACT STRUCTURAL SHELL ]
             </div>
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-[#FAFAFA]">
               Contact Section Placeholder
