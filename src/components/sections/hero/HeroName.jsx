@@ -5,12 +5,12 @@ const LAST_NAME = 'VADAVALLI';
 
 function LetterSwapWord({ word, className = '' }) {
   return (
-    <span className={`inline-flex flex-wrap ${className}`}>
+    <span className={`inline-flex flex-nowrap whitespace-nowrap ${className}`}>
       {word.split('').map((char, index) => (
         <span
           key={index}
           className="relative inline-block overflow-hidden group/letter cursor-pointer select-none"
-          style={{ transitionDelay: `${index * 25}ms` }}
+          style={{ transitionDelay: `${index * 22}ms` }}
         >
           {/* Default Front Character */}
           <span 
@@ -31,23 +31,26 @@ function LetterSwapWord({ word, className = '' }) {
   );
 }
 
-export default function HeroName() {
+export default function HeroName({ className = '' }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div 
-      className="space-y-1 select-none"
+      className={`space-y-0 select-none ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-label="Sarvani Vadavalli"
     >
-      <div className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] leading-[0.9] tracking-tighter uppercase text-[#FAFAFA]">
+      {/* Refined Display First Name Header (Occupies ~45-55% desktop width, zero wrapping) */}
+      <div className="font-display font-bold text-[clamp(44px,6.8vw,115px)] leading-[0.88] tracking-tighter uppercase text-[#FAFAFA] whitespace-nowrap">
         <LetterSwapWord word={FIRST_NAME} />
       </div>
-      <div className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6.5rem] leading-[0.9] tracking-tighter uppercase text-[#A1A1AA] flex items-center gap-3">
+
+      {/* Refined Display Last Name Header + Terminal Red Square */}
+      <div className="font-display font-bold text-[clamp(36px,5.8vw,98px)] leading-[0.88] tracking-tighter uppercase text-[#A1A1AA] flex items-center gap-2 sm:gap-4 whitespace-nowrap">
         <LetterSwapWord word={LAST_NAME} />
         <span 
-          className={`inline-block w-3 h-3 md:w-5 md:h-5 bg-[#FF2E2E] transition-transform duration-300 ${
+          className={`inline-block w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5 bg-[#FF2E2E] transition-transform duration-300 ${
             isHovered ? 'scale-125 rotate-45' : 'scale-100'
           }`}
           aria-hidden="true"

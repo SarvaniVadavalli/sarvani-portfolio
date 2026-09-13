@@ -5,7 +5,7 @@ import GridMotion from '../../animations/GridMotion';
 export default function CenterFlowSection() {
   return (
     <Section id="center-flow-nav" className="relative py-12 md:py-16 bg-[#09090B] overflow-hidden">
-      {/* Background Layer: Atmospheric Grid Motion (z-0) */}
+      {/* Background Layer: Animated Technical Text Field (z-0) */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <GridMotion gradientColor="#09090B" />
       </div>
@@ -24,7 +24,7 @@ export default function CenterFlowSection() {
           </span>
         </div>
 
-        {/* Center Flow Component */}
+        {/* Center Flow Radial Navigation System */}
         <CenterFlow />
 
       </div>

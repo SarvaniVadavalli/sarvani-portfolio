@@ -13,7 +13,10 @@ export default function CenterFlow() {
   const containerRef = useRef(null);
   const [activeSection, setActiveSection] = useState('');
   const [hoveredNode, setHoveredNode] = useState(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 500 });
+  const [dimensions, setDimensions] = useState({
+    width: typeof window !== 'undefined' ? Math.min(window.innerWidth - 32, 1200) : 1000,
+    height: 500,
+  });
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
@@ -29,7 +32,8 @@ export default function CenterFlow() {
 
     const updateSize = () => {
       if (containerRef.current) {
-        const w = containerRef.current.offsetWidth;
+        const measuredWidth = containerRef.current.offsetWidth || containerRef.current.clientWidth;
+        const w = measuredWidth > 0 ? measuredWidth : Math.min(window.innerWidth - 32, 1200);
         const mobile = w < 640;
         const tablet = w >= 640 && w < 1024;
         
@@ -46,11 +50,23 @@ export default function CenterFlow() {
     };
 
     updateSize();
+    const rafId = requestAnimationFrame(updateSize);
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        updateSize();
+      });
+      resizeObserver.observe(containerRef.current);
+    }
+
     window.addEventListener('resize', updateSize);
 
     return () => {
       mediaQuery.removeEventListener('change', handleMediaChange);
       window.removeEventListener('resize', updateSize);
+      if (rafId) cancelAnimationFrame(rafId);
+      if (resizeObserver) resizeObserver.disconnect();
     };
   }, []);
 

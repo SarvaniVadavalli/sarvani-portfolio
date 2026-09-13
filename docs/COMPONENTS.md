@@ -33,23 +33,28 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ### `Hero`
 - **Location**: `src/components/sections/hero/Hero.jsx`
-- **Description**: Root component for the hero section combining asymmetrical 12-column editorial grid, 3D Letter Swap name, editorial portrait frame, technical metadata, and clean dark canvas background.
-- **Status**: **IMPLEMENTED (Phase 3.1 & Phase 3.2)**
+- **Description**: Root component for the hero section, featuring an experimental asymmetrical editorial poster spread ("Break Design Rules") combining top identification bar, display `Space Grotesk` name, angled brutalist polygon portrait graphic container, distinct technical positioning statement (`I BUILD AT THE EDGE OF SOFTWARE AND MACHINE INTELLIGENCE.`), metadata matrix, CTAs, and background `HalftoneWave` layer.
+- **Status**: **IMPLEMENTED (Phase 3.4 - 3.6 Refinement)**
 
 ### `HeroName`
 - **Location**: `src/components/sections/hero/HeroName.jsx`
-- **Description**: Prominent name display (`SARVANI VADAVALLI`) in `Space Grotesk` display typography, featuring 3D Letter Swap interaction on hover/focus.
-- **Status**: **IMPLEMENTED (Phase 3.1)**
+- **Description**: Intentionally oversized display name header (`SARVANI VADAVALLI`) in `Space Grotesk` display typography (`text-6xl` to `text-[13rem]`), featuring negative line height, tight tracking, interactive 3D Letter Swap per-character animation, and active Sharp Red (`#FF2E2E`) square accent indicator.
+- **Status**: **IMPLEMENTED (Phase 3.4)**
 
 ### `HeroImage`
 - **Location**: `src/components/sections/hero/HeroImage.jsx`
-- **Description**: Editorial portrait container displaying the owner's portrait (`src/assets/1.jpeg`) with monochrome filter art-direction, techno-brutalist border framing, metadata overlays, and subtle parallax pointer response.
-- **Status**: **IMPLEMENTED (Phase 3.1 & Phase 3.2)**
+- **Description**: Customized ProfileCard 3D tilt photo plate displaying owner portrait (`src/assets/1.jpeg`) inside a 1px border `#121215` container with `#FF2E2E` corner tick markers, dark bottom specification strip (`SARVANI VADAVALLI // FIGURE 01`), high-contrast monochrome image filter (`grayscale-[75%] contrast-[112%]`), and mouse-following 3D tilt (max 5.5deg, `rAF` lerp loop, smooth return to center). Includes touch & `@media (prefers-reduced-motion: reduce)` fallbacks.
+- **Status**: **IMPLEMENTED (Phase 3.9)**
 
 ### `HeroMeta`
 - **Location**: `src/components/sections/hero/HeroMeta.jsx`
 - **Description**: Technical metadata badges displaying availability status ("AVAILABLE FOR PROJECTS"), location ("INDIA // REMOTE"), and specialization tags (`AI / ML`, `COMPUTER VISION`, `FULL STACK`, `CSE / AIML`).
 - **Status**: **IMPLEMENTED (Phase 3.1)**
+
+### `HalftoneWave`
+- **Location**: `src/components/animations/HalftoneWave.jsx`
+- **Description**: Ambient technical Canvas 2D halftone dot matrix wave background component based on the React Bits Halftone Wave pattern. Features subtle `#27272A` halftone dots on `#09090B` canvas with slow 2D sine wave oscillation, `#A1A1AA` highlights, rare `#FF2E2E` peak accent nodes, subtle cursor proximity radius boost, zero heavy ML/shader dependencies (`aria-hidden="true"`), and full `@media (prefers-reduced-motion: reduce)` fallback. Operates strictly as the Hero background layer (`z-0 pointer-events-none`). Replaces `GridScan`.
+- **Status**: **IMPLEMENTED (Phase 3.5)**
 
 ---
 
@@ -57,8 +62,8 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ### `CenterFlowSection`
 - **Location**: `src/components/sections/navigation/CenterFlowSection.jsx`
-- **Description**: Dedicated section wrapper placed directly after Hero and before About. Features `GridMotion` (z-0) atmospheric background layer and header (`EXPLORE // NAVIGATE PORTFOLIO` / `RADIAL INDEX // 06 NODES`) over interactive `CenterFlow` (z-10).
-- **Status**: **IMPLEMENTED (Phase 4.2 & Visual Upgrade)**
+- **Description**: Dedicated section wrapper placed directly after Hero and before About. Features header (`EXPLORE // NAVIGATE PORTFOLIO` / `RADIAL INDEX // 06 NODES`) over interactive `CenterFlow` radial index hub on a clean `#09090B` background.
+- **Status**: **IMPLEMENTED (Phase 4.2)**
 
 ### `CenterFlow`
 - **Location**: `src/components/animations/CenterFlow.jsx`
@@ -67,8 +72,8 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ### `GridMotion`
 - **Location**: `src/components/animations/GridMotion.jsx`
-- **Description**: Atmospheric background component for the Center Flow navigation section based on the React Bits GridMotion pattern. Takes `items` (array of custom technical/editorial JSX tiles; zero stock imagery) and `gradientColor` (`#09090B` radial/linear overlay mask). Features 4 staggered rows with GPU-accelerated infinite drift animations, reduced opacity for background layering (`z-0`), and `@media (prefers-reduced-motion: reduce)` pause fallback.
-- **Status**: **IMPLEMENTED (Phase 4.2 Visual Upgrade)**
+- **Description**: Atmospheric text field component rendered behind the Center Flow radial navigation system (`z-0`). Features 28 curated technical vocabulary items (`AI / ML`, `COMPUTER VISION`, `FULL STACK`, `CSE / AIML`, `RESEARCH`, `SYSTEMS`, `MODELS`, `BUILD`, `PIPELINES`, `CODE`, `DESIGN`, `LEARNING`, `EXPERIMENT`, `SARVANI`, `RADIAL`, `MATRIX`, `REACT`, `TAILWIND`, `ALGORITHMS`, `NEURAL`, `VISION`, `DATA`, `NETWORKS`, `ENGINEERING`) distributed as borderless text fragments across 5 staggered horizontal rows. Includes faint 8–18% text opacity, subtle pointer parallax, alternating slow horizontal drift animations, central radial dark vignette mask (`#09090B`), and `@media (prefers-reduced-motion: reduce)` pause fallback.
+- **Status**: **IMPLEMENTED (Phase 4.8)**
 
 
 
@@ -76,10 +81,15 @@ This document lists all planned and implemented component modules for the **Sarv
 
 ## 4. About Component
 
-### `AboutSection`
-- **Location**: `src/components/about/AboutSection.jsx`
-- **Description**: Narrative overview detailing Sarvani's background, technical philosophy, engineering mindset, and personal approach.
-- **Status**: PLANNED (Phase 6)
+### `About`
+- **Location**: `src/components/sections/about/About.jsx`
+- **Description**: Personal identity section consisting of 2 core elements: **ABOUT ME** (dominant 7-column visual area featuring 3 rich, human, personal narrative paragraphs) and **EDUCATION** (secondary 5-column `MagicBento` card: `SRM UNIVERSITY AP` | `B.Tech — CSE` | `2024 — 2028` | `CGPA: 9.11`). Includes staggered `IntersectionObserver` scroll entrance and `@media (prefers-reduced-motion: reduce)` fallback. Interests section is completely removed.
+- **Status**: **IMPLEMENTED (Phase 5.3 Final Simplification)**
+
+### `MagicBento`
+- **Location**: `src/components/animations/MagicBento.jsx`
+- **Description**: Reusable Magic Bento card container handling cursor tracking spotlight (`rgba(255, 46, 46, 0.12)`), restrained 2.5° 3D tilt, 3px magnetic pull, default `#27272A` border with Sharp Red (`#FF2E2E`) hover response, and active red corner tick indicator. Includes `@media (prefers-reduced-motion: reduce)` fallback.
+- **Status**: **IMPLEMENTED (Phase 5.3)**
 
 ---
 
@@ -145,6 +155,21 @@ This document lists all planned and implemented component modules for the **Sarv
 - **Location**: `src/components/sections/hero/HeroName.jsx`
 - **Description**: 3D letter swapping text effect primitive for interactive headings.
 - **Status**: **IMPLEMENTED (Phase 3.1)**
+
+### `WrapText`
+- **Location**: `src/components/animations/WrapText.jsx`
+- **Description**: React Bits Wrap Text interaction component applied to the primary Hero positioning statement (`I BUILD AT THE EDGE OF SOFTWARE AND MACHINE INTELLIGENCE.`). Renders semantic `<Component>` with Space Grotesk bold text (`#FAFAFA`), featuring staggered word-reveal entrance animation on scroll/mount and subtle word hover translation (`-2px`) with Sharp Red (`#FF2E2E`) color accent highlight. Includes full `@media (prefers-reduced-motion: reduce)` static text fallback. Replaces `ParticleText`.
+- **Status**: **IMPLEMENTED (Phase 3.8)**
+
+### `Landing`
+- **Location**: `src/components/sections/landing/Landing.jsx`
+- **Description**: Dedicated `100vh` entrance gate component rendered before the Hero section. Features centered title (`WELCOME TO MY<br />WORK.`), header (`SARVANI.` top-left, `PORTFOLIO ENTRY // 2026` top-right), and a minimal bottom footer containing a text-only `[ ENTER ]` action button (`text-[#FF2E2E]` hovering to `#FAFAFA`). Includes window keydown (`Enter`) and scroll/swipe listeners wired to a unified `enterPortfolio()` transition handler.
+- **Status**: **IMPLEMENTED & REFINED (Phase 4 Visual Correction #4)**
+
+### `SlicedWaves`
+- **Location**: `src/components/animations/SlicedWaves.jsx`
+- **Description**: WebGL GLSL generative background component featuring 12 straight horizontal segment layers with fixed $Y$ base levels, subtle luminance (glow magnitude strictly 0.08–0.15 with rapid exponential falloff), layered horizontal motion at alternating slow speeds, 85-90% grayscale (`#27272A`, `#52525B`, `#A1A1AA`, `#FAFAFA`) with 10-15% selective Sharp Red (`#FF2E2E`) accents, subtle central readability mask (`textReadabilityFactor`), horizontal slice retraction transition on portfolio entry (`~700ms`), and `@media (prefers-reduced-motion: reduce)` fallback.
+- **Status**: **IMPLEMENTED & REFINED (Phase 4 Visual Correction #4)**
 
 ### `BlinkingSquares`
 - **Location**: `src/components/animations/BlinkingSquares.jsx`

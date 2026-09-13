@@ -9,11 +9,13 @@ const NAV_ITEMS = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ isVisible = true }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#09090B] border-b border-[#27272A]">
+    <header className={`sticky top-0 z-50 bg-[#09090B] border-b border-[#27272A] transition-all duration-700 ease-in-out ${
+      isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none h-0 border-none overflow-hidden'
+    }`}>
       <div className="portfolio-container flex items-center justify-between h-16">
         {/* Brand Logo / Home Anchor */}
         <a 
