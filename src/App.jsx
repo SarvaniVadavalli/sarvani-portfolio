@@ -6,6 +6,7 @@ import Landing from './components/sections/landing/Landing';
 import Hero from './components/sections/hero/Hero';
 import CenterFlowSection from './components/sections/navigation/CenterFlowSection';
 import About from './components/sections/about/About';
+import Capabilities from './components/sections/capabilities/Capabilities';
 
 export default function App() {
   const [hasEntered, setHasEntered] = useState(false);
@@ -68,20 +69,8 @@ export default function App() {
         {/* Section 3: About Interactive Editorial Section (Phase 5.1) */}
         <About />
 
-        {/* Section 4: Capabilities Structural Placeholder */}
-        <Section id="capabilities">
-          <div className="border border-[#27272A] p-8 space-y-4 bg-[#121215]/50">
-            <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-wider">
-              [ SECTION 04 // CAPABILITIES STRUCTURAL SHELL ]
-            </div>
-            <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-[#FAFAFA]">
-              Capabilities Section Placeholder
-            </h2>
-            <p className="font-body text-sm text-[#A1A1AA]">
-              Structural boundary for technical skills matrix, architectural specialties, and toolstack breakdown.
-            </p>
-          </div>
-        </Section>
+        {/* Section 4: Capabilities Interactive Systems Specification Section (Phase 6.0) */}
+        <Capabilities />
 
         {/* Section 5: Projects Structural Placeholder */}
         <Section id="projects">

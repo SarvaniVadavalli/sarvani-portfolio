@@ -569,3 +569,31 @@ This log records all key architectural, technical, visual, and design decisions 
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-14
 
+---
+
+### Decision 53: Phase 6.0 — Capabilities Section Redesign (`Capabilities.jsx`, `App.jsx`)
+- **Decision**: Implemented the redesigned Capabilities section (`#capabilities`) as an asymmetric editorial specification matrix answering "What can Sarvani actually build?" using techno-brutalist aesthetics and interactive specifications.
+- **Details**:
+  - **Component Structure**: `src/components/sections/capabilities/Capabilities.jsx` mounted via `<Capabilities />` in `App.jsx` inside standard `<Section id="capabilities">`.
+  - **Asymmetric Editorial Layout**:
+    - **Left Column (4 Cols, Desktop Sticky)**: Displays top technical annotation `CAPABILITIES // 04 SYSTEMS` / `SPECIFICATION MATRIX // 05 DOMAINS`, section title `CAPABILITIES.` with terminal `#FF2E2E` dot, technical positioning summary, and a live `INSPECTION CONSOLE` with pulsing red `LIVE` beacon showing current active domain title, index (`01 // 05`), and total unit count (`33 TECHNOLOGIES`).
+    - **Right Column (8 Cols)**: 5 distinct capability rows with varied horizontal padding, thin `#27272A` borders, active `#FF2E2E` left edge indicator bar, subtle 2–4px horizontal hover translation on technology chips, and expandable specification scope/subsystem highlights (`max-h-0` -> `max-h-32` on hover/focus).
+  - **Strict Technology Scope (Zero Inventions, Zero Fluff)**:
+    - `01 / AI & MACHINE LEARNING`: Python, Scikit-Learn, TensorFlow, Machine Learning, Model Training, Model Evaluation.
+    - `02 / COMPUTER VISION`: OpenCV, NumPy, Image Processing, CNN-based Computer Vision, Deepfake Detection.
+    - `03 / FULL-STACK ENGINEERING`: React, Node.js, Express.js, Vite, Tailwind CSS, REST APIs, JWT Authentication.
+    - `04 / DATA & DATABASES`: MongoDB, MySQL, SQL, Mongoose, Database Design, CRUD / Stored Procedures / Triggers.
+    - `05 / CORE ENGINEERING`: C, C++, JavaScript, Python, Data Structures & Algorithms, OOP, DBMS, Operating Systems, Computer Networks.
+  - **Strict Design System Palette & Geometry**:
+    - Background: `#09090B`, Surface: `#121215`, Borders: `#27272A`, Primary: `#FAFAFA`, Muted: `#A1A1AA`, Accent: `#FF2E2E`.
+    - Corners: `0px` throughout. Zero gradients, zero neon, zero glassmorphism, zero unauthorized accent colors.
+  - **Motion & Accessibility**:
+    - IntersectionObserver sequential scroll entry (translateY: 16px -> 0px, opacity: 0 -> 1 with staggered delays, ~500–800ms total visual sequence).
+    - Full `@media (prefers-reduced-motion: reduce)` support with static display fallback.
+    - Full keyboard navigation with `tabIndex={0}` and visible high-contrast focus rings (`focus-visible:outline-2 focus-visible:outline-[#FF2E2E]`).
+    - Seamless mobile collapse into a single vertical column with zero horizontal overflow.
+  - **Zero Downstream/Upstream Impact**: Landing, Hero, Center Flow, About, Projects, Experience, Achievements, Contact, Navbar, and Footer remain completely untouched.
+- **Reason**: Replaces generic skill card grids with a concrete, high-contrast editorial specification system that immediately communicates Sarvani's engineering range and technical depth in under 10 seconds.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+

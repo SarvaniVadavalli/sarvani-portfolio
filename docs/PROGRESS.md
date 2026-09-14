@@ -1,9 +1,9 @@
 # Project Progress Tracker
 
-**Current Phase**: Phase 5.3 — Hero Portrait: Physics-Based Lanyard (Completed)  
-**Overall Completion**: 98%  
-**Last Completed Task**: Phase 5.3 — Hero Portrait: Replace Profile Card with Physics-Based Lanyard (`Lanyard.jsx`, `HeroImage.jsx`)  
-**Next Task**: Phase 5.4 / Phase 6 — Visual Review / Next Section Implementation  
+**Current Phase**: Phase 6.0 — Capabilities Section Redesign (Completed)  
+**Overall Completion**: 99%  
+**Last Completed Task**: Phase 6.0 — Capabilities Section Redesign: Asymmetric Editorial Specification Matrix (`Capabilities.jsx`, `App.jsx`)  
+**Next Task**: Phase 6.1 / Phase 7 — User Visual Review / Next Section Implementation  
 
 ---
 
@@ -63,7 +63,7 @@
 
 | Phase 5 | Implement `ProjectsSection` layout & filtering grid | NOT STARTED | Project showcase grid |
 | Phase 5 | Implement `ProjectItem` cards with technical meta | NOT STARTED | High-contrast project cards |
-| Phase 6 | Implement `CapabilitiesSection` tech matrix | NOT STARTED | Technical skills breakdown |
+| Phase 6 | Implement `Capabilities.jsx` asymmetric specification matrix | COMPLETED | 5 distinct domains, 33 supported technologies, live inspection console, detail reveal, zero generic language |
 | Phase 6 | Implement `ExperienceSection` timeline | NOT STARTED | Career trajectory timeline |
 | Phase 6 | Implement `AchievementsSection` highlight grid | NOT STARTED | Key metrics & honors |
 | Phase 7 | Implement `ContactSection` interactive form & links | NOT STARTED | Minimal direct contact interface |
