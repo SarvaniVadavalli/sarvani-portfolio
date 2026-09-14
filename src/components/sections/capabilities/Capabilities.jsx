@@ -6,10 +6,10 @@ const CAPABILITY_MODULES = [
   {
     id: 'programming',
     index: '01',
-    title: 'PROGRAMMING',
-    label: 'SYNTAX & RUNTIMES',
-    description:
-      'Computational logic, system algorithms, and database queries across compiled, interpreted, and procedural languages.',
+    title: 'PROGRAMMING & LANGUAGES',
+    meta: 'LANGUAGE STACK',
+    summary:
+      'Computational logic, system algorithms, and database queries across compiled, interpreted, and procedural runtimes.',
     technologies: [
       'C',
       'C++',
@@ -19,46 +19,32 @@ const CAPABILITY_MODULES = [
       'HTML/CSS',
     ],
     usedIn: 'UNIMEET · DEEPFAKE DETECTION · HOSPITAL MANAGEMENT',
-    preview: 'C · C++ · Python · JavaScript · SQL · HTML/CSS',
   },
   {
-    id: 'ai-ml',
+    id: 'ai-cv',
     index: '02',
-    title: 'AI / MACHINE LEARNING',
-    label: 'INTELLIGENCE PIPELINES',
-    description:
-      'Predictive workflows, supervised classification architectures, and quantitative model evaluation.',
+    title: 'AI / ML + COMPUTER VISION',
+    meta: 'INTELLIGENCE PIPELINES',
+    summary:
+      'Predictive models, neural network architectures, matrix transformations, and synthetic artifact detection.',
     technologies: [
       'TensorFlow',
       'Scikit-learn',
       'Machine Learning',
-    ],
-    usedIn: 'DEEPFAKE DETECTION',
-    preview: 'TensorFlow · Scikit-learn · Machine Learning',
-  },
-  {
-    id: 'computer-vision',
-    index: '03',
-    title: 'COMPUTER VISION',
-    label: 'IMAGE PROCESSING & CNN',
-    description:
-      'Convolutional feature extraction, image preprocessing matrices, and synthetic anomaly detection.',
-    technologies: [
       'OpenCV',
       'NumPy',
       'CNN',
       'Image Processing',
     ],
     usedIn: 'DEEPFAKE DETECTION',
-    preview: 'OpenCV · NumPy · CNN · Image Processing',
   },
   {
     id: 'fullstack',
-    index: '04',
+    index: '03',
     title: 'FULL-STACK ENGINEERING',
-    label: 'CLIENT-SERVER SYSTEMS',
-    description:
-      'Constructing responsive full-stack web applications with reactive client state, RESTful routing, and stateless token authorization.',
+    meta: 'APPLICATION ARCHITECTURE',
+    summary:
+      'End-to-end web architectures, reactive client state trees, RESTful API routing, and stateless token authorization.',
     technologies: [
       'React',
       'Node.js',
@@ -68,52 +54,25 @@ const CAPABILITY_MODULES = [
       'JWT Authentication',
     ],
     usedIn: 'UNIMEET',
-    preview: 'React · Node.js · Express.js · Tailwind CSS · REST · JWT',
   },
   {
-    id: 'databases',
-    index: '05',
-    title: 'DATABASES',
-    label: 'PERSISTENCE & SCHEMAS',
-    description:
-      'Relational and document storage modeling, data integrity constraints, and transactional triggers.',
+    id: 'data-systems',
+    index: '04',
+    title: 'DATA, SYSTEMS & TOOLS',
+    meta: 'INFRASTRUCTURE & FOUNDATIONS',
+    summary:
+      'Relational and document storage, algorithmic problem solving, system-level design, and automated developer tooling.',
     technologies: [
       'MySQL',
       'MongoDB',
       'Database Design',
-      'SQL',
-      'CRUD Operations',
       'Stored Procedures',
       'Triggers',
-    ],
-    usedIn: 'HOSPITAL MANAGEMENT · UNIMEET',
-    preview: 'MySQL · MongoDB · Database Design · SQL · CRUD · Triggers',
-  },
-  {
-    id: 'core-engineering',
-    index: '06',
-    title: 'CORE ENGINEERING',
-    label: 'SYSTEMS & THEORY',
-    description:
-      'Algorithmic bounds, memory hierarchy, relational internals, process scheduling, and socket layers.',
-    technologies: [
       'Data Structures & Algorithms',
-      'Object-Oriented Programming',
+      'OOP',
       'DBMS',
       'Operating Systems',
       'Computer Networks',
-    ],
-    usedIn: 'SYSTEM ARCHITECTURE & COMPUTATIONAL FOUNDATIONS',
-    preview: 'DSA · OOP · DBMS · Operating Systems · Networks',
-  },
-  {
-    id: 'development-tools',
-    index: '07',
-    title: 'DEVELOPMENT TOOLS',
-    label: 'WORKFLOW & TOOLING',
-    description:
-      'Version control pipelines, API endpoint testing, service containerization, and interface specifications.',
-    technologies: [
       'Git',
       'GitHub',
       'VS Code',
@@ -121,8 +80,7 @@ const CAPABILITY_MODULES = [
       'Docker',
       'Figma',
     ],
-    usedIn: 'DEVELOPMENT & DEPLOYMENT LIFECYCLE',
-    preview: 'Git · GitHub · VS Code · Postman · Docker · Figma',
+    usedIn: 'HOSPITAL MANAGEMENT · UNIMEET',
   },
 ];
 
@@ -131,11 +89,11 @@ export default function Capabilities() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   const sideInspectorRef = useRef(null);
-  const cardRefs = useRef([]);
+  const rowRefs = useRef([]);
 
   const activeModule = CAPABILITY_MODULES[activeIndex] || CAPABILITY_MODULES[0];
 
-  // IntersectionObserver for scroll entrance
+  // Viewport scroll entrance observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -153,7 +111,7 @@ export default function Capabilities() {
     return () => observer.disconnect();
   }, []);
 
-  // Animate side inspector content crossfade on active module change
+  // Subtle GSAP crossfade on side inspector when active module changes
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
@@ -162,26 +120,26 @@ export default function Capabilities() {
     if (sideInspectorRef.current && !prefersReducedMotion) {
       gsap.fromTo(
         sideInspectorRef.current,
-        { opacity: 0.45, y: 6 },
+        { opacity: 0.4, y: 8 },
         { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', overwrite: 'auto' }
       );
     }
   }, [activeIndex]);
 
-  // Keyboard navigation
+  // Keyboard navigation across the 4 editorial rows
   const handleKeyDown = useCallback(
     (e, idx) => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
         e.preventDefault();
         const next = (idx + 1) % CAPABILITY_MODULES.length;
         setActiveIndex(next);
-        cardRefs.current[next]?.focus();
+        rowRefs.current[next]?.focus();
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault();
         const prev =
           (idx - 1 + CAPABILITY_MODULES.length) % CAPABILITY_MODULES.length;
         setActiveIndex(prev);
-        cardRefs.current[prev]?.focus();
+        rowRefs.current[prev]?.focus();
       } else if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         setActiveIndex(idx);
@@ -191,8 +149,8 @@ export default function Capabilities() {
   );
 
   return (
-    <Section id="capabilities" aria-label="Capabilities — Technical System Specification">
-      <div ref={sectionRef} className="space-y-8 md:space-y-10">
+    <Section id="capabilities" aria-label="Capabilities — Technical Editorial Index">
+      <div ref={sectionRef} className="space-y-10 md:space-y-12">
         
         {/* Top Header Annotation Strip */}
         <div
@@ -207,9 +165,9 @@ export default function Capabilities() {
             </span>
           </div>
           <div className="text-[#A1A1AA] uppercase flex items-center gap-2">
-            <span>INDEX: 0{activeIndex + 1} // 07</span>
+            <span>SPECIFICATION MATRIX</span>
             <span className="text-[#27272A]">//</span>
-            <span className="text-[#FAFAFA]">INTERACTIVE TECHNICAL SYSTEM</span>
+            <span className="text-[#FAFAFA]">04 MODULES</span>
           </div>
         </div>
 
@@ -220,7 +178,7 @@ export default function Capabilities() {
           }`}
         >
           <div className="space-y-2">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#FAFAFA] leading-none">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-[#FAFAFA] leading-none">
               CAPABILITIES<span className="text-[#FF2E2E]">.</span>
             </h2>
             <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-widest font-semibold flex items-center gap-2">
@@ -228,23 +186,23 @@ export default function Capabilities() {
               WHAT I BUILD WITH.
             </div>
           </div>
-          <div className="font-mono-tech text-xs text-[#A1A1AA] hidden lg:flex items-center gap-3">
+          <div className="font-mono-tech text-xs text-[#A1A1AA] uppercase tracking-widest hidden md:flex items-center gap-2">
             <span>SYSTEM SPECIFICATION</span>
             <span className="text-[#27272A]">//</span>
-            <span className="text-[#FAFAFA]">07 CAPABILITY MODULES</span>
+            <span className="text-[#FAFAFA]">04 MODULES</span>
           </div>
         </div>
 
         {/* ========================================================= */}
-        {/* TWO-COLUMN EDITORIAL SYSTEM (Cards Left, Inspector Right)  */}
+        {/* TWO-COLUMN EDITORIAL SYSTEM (Index Left, Inspector Right)  */}
         {/* ========================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pt-2">
           
-          {/* LEFT / MAIN COLUMN: Stack of 7 Capability Cards (8 Cols) */}
+          {/* LEFT / MAIN COLUMN: Large Typographic Capability Index (8 Cols) */}
           <div
             role="tablist"
-            aria-label="Capabilities Module Stack"
-            className={`lg:col-span-8 space-y-3 transition-all duration-700 delay-150 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:transform-none ${
+            aria-label="Capabilities Editorial Index"
+            className={`lg:col-span-8 divide-y divide-[#27272A] border-t border-b border-[#27272A] transition-all duration-700 delay-150 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:transform-none ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
             }`}
           >
@@ -254,135 +212,97 @@ export default function Capabilities() {
               return (
                 <div
                   key={item.id}
-                  ref={(el) => (cardRefs.current[idx] = el)}
+                  ref={(el) => (rowRefs.current[idx] = el)}
                   role="tab"
                   tabIndex={0}
-                  id={`capability-card-${item.id}`}
+                  id={`capability-row-${item.id}`}
                   aria-selected={isActive}
-                  aria-controls={`capability-panel-${item.id}`}
+                  aria-controls={`capability-spec-${item.id}`}
                   onMouseEnter={() => setActiveIndex(idx)}
                   onFocus={() => setActiveIndex(idx)}
                   onClick={() => setActiveIndex(idx)}
                   onKeyDown={(e) => handleKeyDown(e, idx)}
-                  className={`group relative border transition-all duration-300 ease-out cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-[#FF2E2E] ${
-                    isActive
-                      ? 'bg-[#121215] border-[#3F3F46]'
-                      : 'bg-[#121215]/40 border-[#27272A] hover:border-[#3F3F46] hover:bg-[#121215]/70'
+                  className={`group relative py-7 sm:py-9 lg:py-10 cursor-pointer select-none transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-[#FF2E2E] ${
+                    isActive ? 'bg-[#121215]/30' : 'bg-transparent hover:bg-[#121215]/15'
                   }`}
                 >
-                  {/* Left Red Active Edge Indicator Bar */}
+                  {/* Subtle Red Edge Marker */}
                   <div
-                    className={`absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 pointer-events-none ${
+                    className={`absolute left-0 top-0 bottom-0 w-1 transition-opacity duration-300 pointer-events-none ${
                       isActive ? 'bg-[#FF2E2E] opacity-100' : 'bg-transparent opacity-0'
                     }`}
                     aria-hidden="true"
                   />
 
-                  {/* ---------------------------------------------------- */}
-                  {/* CARD HEADER / COMPACT STATE (Always Visible Row)    */}
-                  {/* ---------------------------------------------------- */}
-                  <div className="p-4 sm:p-5 flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-                      <span
-                        className={`font-mono-tech text-sm font-bold tracking-wider transition-colors duration-200 ${
-                          isActive
-                            ? 'text-[#FF2E2E]'
-                            : 'text-[#A1A1AA] group-hover:text-[#FF2E2E]'
-                        }`}
-                      >
-                        {item.index}
-                      </span>
-                      <span className="text-[#27272A]" aria-hidden="true">/</span>
-                      <h3 className="font-display font-bold text-base sm:text-lg md:text-xl uppercase tracking-tight text-[#FAFAFA] truncate">
-                        {item.title}
-                      </h3>
-                    </div>
-
-                    <div className="flex items-center gap-4 shrink-0">
-                      {/* Collapsed Preview Chips (Visible when collapsed on sm+) */}
-                      {!isActive && (
-                        <span className="hidden sm:inline font-mono-tech text-xs text-[#A1A1AA]/70 truncate max-w-[240px] md:max-w-[320px]">
-                          {item.preview}
+                  <div className="pl-4 sm:pl-6 pr-2 sm:pr-4 space-y-4">
+                    
+                    {/* Top Row: Large Number + Title + Right Meta */}
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-6">
+                      <div className="flex items-baseline gap-4 sm:gap-6">
+                        {/* Large Module Number (48-64px) */}
+                        <span
+                          className={`font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight transition-colors duration-300 ${
+                            isActive
+                              ? 'text-[#FF2E2E]'
+                              : 'text-[#A1A1AA]/50 group-hover:text-[#FAFAFA]'
+                          }`}
+                        >
+                          {item.index}
                         </span>
-                      )}
 
-                      {/* Interactive Indicator */}
-                      <span
-                        className={`font-mono-tech text-sm transition-transform duration-300 ${
-                          isActive
-                            ? 'text-[#FF2E2E] rotate-90 scale-110'
-                            : 'text-[#A1A1AA]/50 group-hover:text-[#FAFAFA]'
-                        }`}
-                        aria-hidden="true"
-                      >
-                        +
-                      </span>
+                        {/* Large Capability Title (36-52px) */}
+                        <h3
+                          className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold uppercase tracking-tight text-[#FAFAFA] transition-all duration-300 ${
+                            isActive
+                              ? 'translate-x-2 text-[#FAFAFA]'
+                              : 'group-hover:translate-x-1.5'
+                          }`}
+                        >
+                          {item.title}
+                        </h3>
+                      </div>
+
+                      {/* Right Sub-Meta & Active Tag */}
+                      <div className="font-mono-tech text-xs flex items-center gap-3 shrink-0 self-start sm:self-auto pt-1 sm:pt-0">
+                        <span className="text-[11px] uppercase tracking-wider text-[#A1A1AA] hidden md:inline">
+                          {item.meta}
+                        </span>
+                        <span
+                          className={`text-[10px] tracking-widest uppercase px-2 py-0.5 border transition-colors duration-300 ${
+                            isActive
+                              ? 'border-[#FF2E2E] text-[#FF2E2E] bg-[#FF2E2E]/10'
+                              : 'border-[#27272A] text-[#A1A1AA]/60 group-hover:text-[#FAFAFA] group-hover:border-[#3F3F46]'
+                          }`}
+                        >
+                          {isActive ? '[ ACTIVE ]' : `[ ${item.index} ]`}
+                        </span>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* ---------------------------------------------------- */}
-                  {/* EXPANDED ACCORDION REVEAL (Only Visible When Active) */}
-                  {/* ---------------------------------------------------- */}
-                  <div
-                    id={`capability-panel-${item.id}`}
-                    aria-labelledby={`capability-card-${item.id}`}
-                    className={`overflow-hidden transition-all duration-300 ease-out border-t ${
-                      isActive
-                        ? 'max-h-96 opacity-100 border-[#27272A] px-4 pb-5 pt-4 sm:px-6 sm:pb-6'
-                        : 'max-h-0 opacity-0 border-transparent px-4 pb-0 pt-0 sm:px-6'
-                    }`}
-                  >
-                    <div className="space-y-4">
-                      {/* Technical Description */}
-                      <p className="font-body text-sm text-[#A1A1AA] leading-relaxed max-w-xl">
-                        {item.description}
+                    {/* Below: Technology String (Muted, Brightens on Hover/Active) */}
+                    <div className="sm:pl-16 lg:pl-20">
+                      <p
+                        className={`font-mono-tech text-xs sm:text-sm leading-relaxed transition-colors duration-300 ${
+                          isActive
+                            ? 'text-[#FAFAFA]'
+                            : 'text-[#A1A1AA] group-hover:text-[#FAFAFA]/90'
+                        }`}
+                      >
+                        {item.technologies.join(' · ')}
                       </p>
-
-                      {/* Technology Chips */}
-                      <div className="space-y-2">
-                        <div className="font-mono-tech text-[10px] text-[#A1A1AA]/70 uppercase tracking-widest">
-                          SUPPORTED TECHNOLOGIES & RUNTIMES
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {item.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="font-mono-tech text-xs bg-[#09090B] border border-[#27272A] px-2.5 py-1 text-[#FAFAFA] hover:border-[#FF2E2E] transition-colors"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Project Citation */}
-                      <div className="pt-3 border-t border-[#27272A]/70 flex items-center justify-between flex-wrap gap-2 font-mono-tech text-xs">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[#FF2E2E] text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 bg-[#FF2E2E]" aria-hidden="true" />
-                            USED IN //
-                          </span>
-                          <span className="text-[#FAFAFA] text-[11px] font-medium tracking-wide">
-                            {item.usedIn}
-                          </span>
-                        </div>
-                        <span className="text-[10px] text-[#A1A1AA]/50 uppercase hidden md:inline">
-                          VERIFIED RESUME RECORD
-                        </span>
-                      </div>
                     </div>
-                  </div>
 
+                  </div>
                 </div>
               );
             })}
           </div>
 
           {/* ========================================================= */}
-          {/* RIGHT COLUMN: Persistent Side System Inspector Box (4 Cols) */}
+          {/* RIGHT COLUMN: Persistent Technical System Inspector (4 Cols) */}
           {/* ========================================================= */}
           <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-4">
-            <div className="border border-[#27272A] bg-[#121215] p-5 sm:p-6 space-y-5 font-mono-tech select-none">
+            <div className="border border-[#27272A] bg-[#121215] p-6 lg:p-7 space-y-6 font-mono-tech select-none">
               
               {/* Box Header Strip */}
               <div className="flex items-center justify-between pb-3 border-b border-[#27272A] text-xs">
@@ -391,7 +311,7 @@ export default function Capabilities() {
                     CAPABILITY SYSTEM
                   </div>
                   <div className="text-[10px] text-[#A1A1AA] uppercase">
-                    SYSTEM // 07 MODULES
+                    SYSTEM // 04 MODULES
                   </div>
                 </div>
                 <div className="text-[#FF2E2E] flex items-center gap-1.5 text-[10px] font-semibold">
@@ -401,50 +321,54 @@ export default function Capabilities() {
               </div>
 
               {/* Dynamic Animated Content Panel */}
-              <div ref={sideInspectorRef} className="space-y-4">
+              <div ref={sideInspectorRef} className="space-y-5">
                 
                 {/* Active Module Header */}
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   <div className="text-[10px] text-[#A1A1AA] uppercase tracking-wider">
                     ACTIVE MODULE
                   </div>
                   <div className="flex items-baseline gap-3">
-                    <span className="text-3xl sm:text-4xl font-display font-bold text-[#FF2E2E]">
+                    <span className="text-4xl sm:text-5xl font-display font-bold text-[#FF2E2E]">
                       {activeModule.index}
                     </span>
                     <div className="min-w-0">
-                      <div className="text-sm font-display font-bold uppercase text-[#FAFAFA] tracking-tight truncate">
+                      <div className="text-base font-display font-bold uppercase text-[#FAFAFA] tracking-tight truncate">
                         {activeModule.title}
                       </div>
-                      <div className="text-[10px] text-[#A1A1AA] uppercase tracking-wider">
-                        {activeModule.label}
+                      <div className="text-[10px] text-[#A1A1AA] uppercase tracking-wider mt-0.5">
+                        {activeModule.meta}
                       </div>
                     </div>
                   </div>
                 </div>
 
+                {/* Module Operational Summary */}
+                <p className="font-body text-xs text-[#A1A1AA] leading-relaxed pt-1">
+                  {activeModule.summary}
+                </p>
+
                 {/* Stack Breakdown */}
                 <div className="pt-3 border-t border-[#27272A] space-y-2">
                   <div className="text-[10px] text-[#A1A1AA] uppercase tracking-wider">
-                    MODULE STACK
+                    STACK
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-1.5">
+                  <div className="flex flex-wrap gap-1.5">
                     {activeModule.technologies.map((tech) => (
-                      <div
+                      <span
                         key={tech}
-                        className="text-xs text-[#FAFAFA] flex items-center gap-2 bg-[#09090B]/70 border border-[#27272A] px-2.5 py-1"
+                        className="text-xs text-[#FAFAFA] bg-[#09090B] border border-[#27272A] px-2.5 py-1"
                       >
-                        <span className="w-1 h-1 bg-[#FF2E2E]" aria-hidden="true" />
-                        <span className="truncate">{tech}</span>
-                      </div>
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>
 
                 {/* Used In Section */}
-                <div className="pt-3 border-t border-[#27272A] space-y-1">
+                <div className="pt-3 border-t border-[#27272A] space-y-1.5">
                   <div className="text-[10px] text-[#A1A1AA] uppercase tracking-wider">
-                    PROJECT CITATION
+                    USED IN
                   </div>
                   <div className="text-xs text-[#FAFAFA] font-medium leading-snug">
                     {activeModule.usedIn}
@@ -454,7 +378,7 @@ export default function Capabilities() {
                 {/* Status Indicator */}
                 <div className="pt-3 border-t border-[#27272A] flex items-center justify-between text-[10px] text-[#A1A1AA]">
                   <span>STATUS: VERIFIED</span>
-                  <span className="text-[#FF2E2E]">AUTH_OK</span>
+                  <span className="text-[#FF2E2E]">AUTH_RECORD</span>
                 </div>
 
               </div>
@@ -463,8 +387,8 @@ export default function Capabilities() {
 
             {/* Micro System Coordinates */}
             <div className="hidden lg:flex items-center justify-between font-mono-tech text-[10px] text-[#A1A1AA]/60 px-1" aria-hidden="true">
-              <span>SYS_REF: 0x53_MATRIX</span>
-              <span>GRID: 12-COL ASYM</span>
+              <span>SYS_REF: 0x53_EDITORIAL</span>
+              <span>INDEX: 04-ROW ASYM</span>
               <span>STATE: SYNCHRONIZED</span>
             </div>
           </div>

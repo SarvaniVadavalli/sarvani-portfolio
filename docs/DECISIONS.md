@@ -656,6 +656,45 @@ This log records all key architectural, technical, visual, and design decisions 
     - Corners: `0px` throughout. Zero gradients, zero neon, zero glassmorphism, zero stock images.
   - **Zero Downstream/Upstream Impact**: Landing, Hero, Center Flow, About, Projects, Experience, Achievements, Contact, Navbar, and Footer remain 100% locked.
 - **Reason**: The previous single horizontal accordion destroyed the intended editorial composition and side inspector hierarchy. Combining the two-column card + persistent inspector layout with compact accordion card expansion achieves the optimal balance of visual structure, reduced vertical repetition, and interactive precision.
+- **Status**: SUPERSEDED BY DECISION 56
+- **Date**: 2026-09-14
+
+---
+
+### Decision 56: Phase 6.3 — Capabilities Editorial Index (`Capabilities.jsx`)
+- **Decision**: Redesigned the Capabilities section from the seven-card format into a large, spacious, two-column editorial technical index, consolidating the verified resume skills into four primary capability modules and utilizing the persistent right-side inspector for detailed stack and project information.
+- **Details**:
+  - **Rejection of Card Grid**: Removed the repetitive card grid, card backgrounds, rectangular borders, card shadows, and "+" button controls that gave the section an admin/dashboard appearance.
+  - **Two-Column Editorial Index Composition**:
+    - **Left Column (8 Cols)**: A clean, spacious typographic index featuring 4 large editorial rows separated by thin `#27272A` horizontal dividers with generous vertical padding:
+      - Large module indices (`01`–`04` in Space Grotesk, 48–64px, activating to `#FF2E2E` on hover/selection).
+      - Large capability titles (`36–52px` Space Grotesk font-bold uppercase, with subtle 4–8px horizontal hover shift).
+      - Muted inline technology string below (`text-xs sm:text-sm JetBrains Mono`, brightening on hover).
+      - Right-aligned metadata labels (`LANGUAGE STACK`, `INTELLIGENCE PIPELINES`, `APPLICATION ARCHITECTURE`, `INFRASTRUCTURE & FOUNDATIONS`) with active status tags (`[ ACTIVE ]` / `[ 0X ]`).
+      - Thin red left indicator bar illuminates on active row.
+    - **Right Column (4 Cols, Desktop Sticky `lg:top-24`)**: One single persistent technical specification sheet (`border border-[#27272A] bg-[#121215] p-6 lg:p-7`) displaying:
+      - Header: `CAPABILITY SYSTEM // 04 MODULES` + pulsing `● LIVE INSPECTOR` red status beacon.
+      - `ACTIVE MODULE`: Large index (`01`–`04`), module title, and operational category tag.
+      - Module summary description.
+      - `STACK`: Clean badge grid of all technologies in the active module.
+      - `USED IN`: Explicit project citations (`UNIMEET`, `DEEPFAKE DETECTION`, `HOSPITAL MANAGEMENT`).
+      - `STATUS`: `STATUS: VERIFIED` and `AUTH_RECORD` metadata.
+      - Subtle GSAP crossfade on active module transition.
+    - **Mobile Adaptation (< 1024px / 400px)**: The 4 editorial rows stack cleanly with full text visibility and zero horizontal overflow, followed by the technical inspector sheet placed neatly below.
+  - **Four Consolidated Primary Modules (Strict Resume Scope)**:
+    - `01 / PROGRAMMING & LANGUAGES`: C, C++, Python, JavaScript, SQL, HTML/CSS | `USED IN // UNIMEET · DEEPFAKE DETECTION · HOSPITAL MANAGEMENT`
+    - `02 / AI / ML + COMPUTER VISION`: TensorFlow, Scikit-learn, Machine Learning, OpenCV, NumPy, CNN, Image Processing | `USED IN // DEEPFAKE DETECTION`
+    - `03 / FULL-STACK ENGINEERING`: React, Node.js, Express.js, Tailwind CSS, REST APIs, JWT Authentication | `USED IN // UNIMEET`
+    - `04 / DATA, SYSTEMS & TOOLS`: MySQL, MongoDB, Database Design, Stored Procedures, Triggers, Data Structures & Algorithms, OOP, DBMS, Operating Systems, Computer Networks, Git, GitHub, VS Code, Postman, Docker, Figma | `USED IN // HOSPITAL MANAGEMENT · UNIMEET`
+  - **Section Header**:
+    - Left: `CAPABILITIES.` and `WHAT I BUILD WITH.`.
+    - Right: `SYSTEM SPECIFICATION // 04 MODULES`.
+    - Top strip: `CAPABILITIES // TECHNICAL SYSTEM` and `SPECIFICATION MATRIX // 04 MODULES`.
+  - **Strict Visual Language**:
+    - Palette: `#09090B` (Background), `#121215` (Surface), `#27272A` (Borders), `#FAFAFA` (Primary), `#A1A1AA` (Muted), `#FF2E2E` (Accent).
+    - Sharp corners (`0px`). Zero gradients, zero neon, zero glassmorphism, zero stock images.
+  - **Zero Downstream/Upstream Impact**: Landing, Hero, Center Flow, About, Projects, Experience, Achievements, Contact, Navbar, and Footer remain 100% locked.
+- **Reason**: The repetitive seven-card system felt like an admin dashboard or SaaS component grid. Consolidating into four large editorial rows with a persistent technical inspector sheet elevates the section into an authentic techno-brutalist editorial specification.
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-14
 
