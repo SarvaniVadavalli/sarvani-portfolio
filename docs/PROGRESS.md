@@ -63,7 +63,7 @@
 
 | Phase 5 | Implement `ProjectsSection` layout & filtering grid | NOT STARTED | Project showcase grid |
 | Phase 5 | Implement `ProjectItem` cards with technical meta | NOT STARTED | High-contrast project cards |
-| Phase 6.0 | Implement Resume-grounded Capabilities System (`Capabilities.jsx`) | COMPLETED | 7 primary capability systems, 37 exact resume technologies, live inspection console, verified "USED IN" project evidence citations |
+| Phase 6.0 | Implement Resume-grounded Capabilities System (`Capabilities.jsx`) | COMPLETED | 6 primary capability systems (Computer Vision removed), 33 exact resume technologies, live inspection console, verified "USED IN" project evidence citations |
 | Phase 6 | Implement `ExperienceSection` timeline | NOT STARTED | Career trajectory timeline |
 | Phase 6 | Implement `AchievementsSection` highlight grid | NOT STARTED | Key metrics & honors |
 | Phase 7 | Implement `ContactSection` interactive form & links | NOT STARTED | Minimal direct contact interface |

@@ -576,17 +576,17 @@ This log records all key architectural, technical, visual, and design decisions 
 - **Details**:
   - **Component Structure**: `src/components/sections/capabilities/Capabilities.jsx` mounted via `<Capabilities />` in `App.jsx` inside standard `<Section id="capabilities">`.
   - **Header & System Metadata**:
-    - Top annotation strip: `CAPABILITIES // TECHNICAL SYSTEM` (left) and `SPECIFICATION MATRIX // 07 SYSTEMS` (right).
-    - Section display heading: `CAPABILITIES.` with terminal red dot (`#FF2E2E`), system label `07 SYSTEMS`, and supporting line `WHAT I BUILD WITH.`.
-    - Live `INSPECTION CONSOLE`: Synchronously displays active system title, dynamic index (`01 // 07`), and total unit count (`37 TECHNOLOGIES`) with pulsing red `LIVE` beacon.
-  - **Strict Resume-Derived Technology Content (7 Groups, 37 Exact Units, Zero Inventions)**:
+    - Top annotation strip: `CAPABILITIES // TECHNICAL SYSTEM` (left) and `SPECIFICATION MATRIX // 06 SYSTEMS` (right).
+    - Section display heading: `CAPABILITIES.` with terminal red dot (`#FF2E2E`), system label `06 SYSTEMS`, and supporting line `WHAT I BUILD WITH.`.
+    - Live `INSPECTION CONSOLE`: Synchronously displays active system title, dynamic index (`01 // 06`), and total unit count (`33 TECHNOLOGIES`) with pulsing red `LIVE` beacon.
+  - **Strict Resume-Derived Technology Content (6 Groups, 33 Exact Units, Zero Inventions)**:
     - `01 / PROGRAMMING`: C, C++, Python, JavaScript, SQL, HTML/CSS | `USED IN // UNIMEET · DEEPFAKE DETECTION · HOSPITAL MANAGEMENT`
     - `02 / AI / MACHINE LEARNING`: TensorFlow, Scikit-learn, Machine Learning | `USED IN // DEEPFAKE DETECTION`
-    - `03 / COMPUTER VISION`: OpenCV, NumPy, CNN-based Computer Vision, Image Processing | `USED IN // DEEPFAKE DETECTION`
-    - `04 / FULL-STACK ENGINEERING`: React, Node.js, Express.js, Tailwind CSS, REST APIs, JWT Authentication | `USED IN // UNIMEET`
-    - `05 / DATABASES`: MySQL, MongoDB, Database Design, SQL, CRUD Operations, Stored Procedures, Triggers | `USED IN // HOSPITAL MANAGEMENT · UNIMEET`
-    - `06 / CORE ENGINEERING`: Data Structures & Algorithms, Object-Oriented Programming, DBMS, Operating Systems, Computer Networks | `USED IN // SYSTEM ARCHITECTURE & COMPUTATIONAL FOUNDATIONS`
-    - `07 / DEVELOPMENT TOOLS`: Git, GitHub, VS Code, Postman, Docker, Figma | `USED IN // DEVELOPMENT & DEPLOYMENT LIFECYCLE`
+    - `03 / FULL-STACK ENGINEERING`: React, Node.js, Express.js, Tailwind CSS, REST APIs, JWT Authentication | `USED IN // UNIMEET`
+    - `04 / DATABASES`: MySQL, MongoDB, Database Design, SQL, CRUD Operations, Stored Procedures, Triggers | `USED IN // HOSPITAL MANAGEMENT · UNIMEET`
+    - `05 / CORE ENGINEERING`: Data Structures & Algorithms, Object-Oriented Programming, DBMS, Operating Systems, Computer Networks | `USED IN // SYSTEM ARCHITECTURE & COMPUTATIONAL FOUNDATIONS`
+    - `06 / DEVELOPMENT TOOLS`: Git, GitHub, VS Code, Postman, Docker, Figma | `USED IN // DEVELOPMENT & DEPLOYMENT LIFECYCLE`
+  - **Computer Vision Removed**: Per user request, the Computer Vision domain was completely removed from the specification matrix, consolidating the system into 6 core technical capability domains with 33 verified technologies.
   - **Project Evidence Links ("USED IN")**: Capability rows connect directly to portfolio projects as evidence without duplicating the Projects section.
   - **Interaction & Responsive Behavior**:
     - Hovering or focusing a row activates the left `#FF2E2E` edge indicator, subtly shifts the content 3–5px horizontally (`translate-x-1`), changes the index number to red, and syncs the inspection console.

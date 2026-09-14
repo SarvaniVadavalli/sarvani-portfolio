@@ -36,24 +36,8 @@ const CAPABILITY_GROUPS = [
     asymmetry: 'lg:pl-4',
   },
   {
-    id: 'computer-vision',
-    index: '03',
-    title: 'COMPUTER VISION',
-    label: 'IMAGE PROCESSING & CNN',
-    description:
-      'Applying convolutional neural networks, matrix transformations, and feature extraction to process images and detect synthetic alterations.',
-    technologies: [
-      'OpenCV',
-      'NumPy',
-      'CNN-based Computer Vision',
-      'Image Processing',
-    ],
-    usedIn: 'DEEPFAKE DETECTION',
-    asymmetry: 'lg:pr-6',
-  },
-  {
     id: 'fullstack',
-    index: '04',
+    index: '03',
     title: 'FULL-STACK ENGINEERING',
     label: 'CLIENT-SERVER SYSTEMS',
     description:
@@ -67,11 +51,11 @@ const CAPABILITY_GROUPS = [
       'JWT Authentication',
     ],
     usedIn: 'UNIMEET',
-    asymmetry: 'lg:pl-6',
+    asymmetry: 'lg:pr-6',
   },
   {
     id: 'databases',
-    index: '05',
+    index: '04',
     title: 'DATABASES',
     label: 'PERSISTENCE & SCHEMAS',
     description:
@@ -86,11 +70,11 @@ const CAPABILITY_GROUPS = [
       'Triggers',
     ],
     usedIn: 'HOSPITAL MANAGEMENT · UNIMEET',
-    asymmetry: 'lg:pr-5',
+    asymmetry: 'lg:pl-5',
   },
   {
     id: 'core-engineering',
-    index: '06',
+    index: '05',
     title: 'CORE ENGINEERING',
     label: 'SYSTEMS & THEORY',
     description:
@@ -103,11 +87,11 @@ const CAPABILITY_GROUPS = [
       'Computer Networks',
     ],
     usedIn: 'SYSTEM ARCHITECTURE & COMPUTATIONAL FOUNDATIONS',
-    asymmetry: 'lg:pl-3',
+    asymmetry: 'lg:pr-3',
   },
   {
     id: 'development-tools',
-    index: '07',
+    index: '06',
     title: 'DEVELOPMENT TOOLS',
     label: 'WORKFLOW & TOOLING',
     description:
@@ -121,7 +105,7 @@ const CAPABILITY_GROUPS = [
       'Figma',
     ],
     usedIn: 'DEVELOPMENT & DEPLOYMENT LIFECYCLE',
-    asymmetry: 'lg:pr-4',
+    asymmetry: 'lg:pl-4',
   },
 ];
 
@@ -164,7 +148,7 @@ export default function Capabilities() {
           <div className="text-[#A1A1AA] uppercase flex items-center gap-2">
             <span>SPECIFICATION MATRIX</span>
             <span className="text-[#27272A]">//</span>
-            <span className="text-[#FAFAFA]">07 SYSTEMS</span>
+            <span className="text-[#FAFAFA]">06 SYSTEMS</span>
           </div>
         </div>
 
@@ -180,7 +164,7 @@ export default function Capabilities() {
             <div className="space-y-3">
               <span className="font-mono-tech text-[11px] text-[#FF2E2E] font-semibold tracking-widest uppercase flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#FF2E2E]" aria-hidden="true" />
-                07 SYSTEMS
+                06 SYSTEMS
               </span>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#FAFAFA] leading-[1.08]">
                 CAPABILITIES<span className="text-[#FF2E2E]">.</span>
@@ -206,7 +190,7 @@ export default function Capabilities() {
               <div className="space-y-1">
                 <div className="text-[10px] text-[#A1A1AA] uppercase">ACTIVE SYSTEM</div>
                 <div className="text-sm font-bold text-[#FAFAFA] uppercase truncate">
-                  {CAPABILITY_GROUPS[activeGroupIndex].title}
+                  {CAPABILITY_GROUPS[activeGroupIndex]?.title || CAPABILITY_GROUPS[0].title}
                 </div>
               </div>
 
@@ -214,13 +198,13 @@ export default function Capabilities() {
                 <div>
                   <div className="text-[9px] text-[#A1A1AA] uppercase">INDEX ID</div>
                   <div className="text-[#FAFAFA] font-medium mt-0.5">
-                    {CAPABILITY_GROUPS[activeGroupIndex].index} // 07
+                    {CAPABILITY_GROUPS[activeGroupIndex]?.index || '01'} // 06
                   </div>
                 </div>
                 <div>
                   <div className="text-[9px] text-[#A1A1AA] uppercase">TOTAL UNITS</div>
                   <div className="text-[#FAFAFA] font-medium mt-0.5">
-                    37 TECHNOLOGIES
+                    33 TECHNOLOGIES
                   </div>
                 </div>
               </div>
@@ -234,7 +218,7 @@ export default function Capabilities() {
             </div>
           </div>
 
-          {/* Right Column: 07 Capability System Rows */}
+          {/* Right Column: 06 Capability System Rows */}
           <div className="col-span-4 md:col-span-6 lg:col-span-8 space-y-0">
             {CAPABILITY_GROUPS.map((group, idx) => {
               const isGroupActive = activeGroupIndex === idx;
