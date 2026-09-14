@@ -449,9 +449,123 @@ This log records all key architectural, technical, visual, and design decisions 
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-14
 
+---
 
+### Decision 45: Phase 5.0 — Landing → Hero Transition & Hero Validation Confirmation
+- **Decision**: Validated and locked the Landing → Hero transition flow, sticky Navbar revelation, zero page flash, Hero starting position, exact approved copy, actual portrait plate, 3D Letter Swap, quiet HalftoneWave background, and seamless scroll continuity into Center Flow.
+- **Details**:
+  - **Transition Sequence**: Confirmed deliberate ~600–700ms fade transition on `[ ENTER ]` click, keyboard `Enter`, or downward scroll/touch swipe. Landing exits cleanly; Hero reveals naturally.
+  - **Zero Page Flash & Layout Jump**: Confirmed consistent `#09090B` background layer across Landing, App shell, and Hero. Zero white/grey flash, unstyled flash, layout jump, or scrollbar jump.
+  - **Navbar Hierarchy**: Landing header (`SARVANI.` / `PORTFOLIO ENTRY // 2026`) belongs strictly to Landing. Portfolio sticky Navbar activates smoothly upon entry without competing navigation headers.
+  - **Hero Positioning & Content**: Hero lands at top viewport position (`y=0`). Preserves exact primary statement (`"I BUILD AT THE EDGE OF SOFTWARE AND MACHINE INTELLIGENCE."`), secondary description, core specializations, 3D Letter Swap name interaction (`SARVANI VADAVALLI`), and actual desaturated portrait plate (`src/assets/1.jpeg`) with restrained `#FF2E2E` behind-glow.
+  - **Locked Components**: Landing, RippleGrid, Center Flow, Grid Motion, About, Capabilities, Projects, Experience, Achievements, Contact, and Footer remain 100% untouched.
+- **Reason**: Ensures the portfolio entrance feels deliberate, polished, continuous, and high-performance while preserving all locked visual and structural components.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
 
+---
 
+### Decision 46: Phase 5.1 — Hero Technical Grid & Crosshair Motion Matrix (`HalftoneWave.jsx`)
+- **Decision**: Implemented a mechanical, pointer-responsive Technical Grid Motion Matrix in `HalftoneWave.jsx` for the Hero section.
+- **Details**:
+  - **Grid & Crosshair Structure**: Rendered a Canvas 2D precision matrix of dots and crosshairs (`+`) in `#27272A` with tiny structural `#FF2E2E` corner accents at select outer grid intersections. Zero glow, zero neon halos.
+  - **Slow Mechanical Scan**: Continuous vertical scanline pulse sweeping across the background at a slow, deliberate cadence.
+  - **Elastic Mouse Proximity & Displacement**: Localized cursor displacement (~170px radius, max 8px node deflection) powered by `rAF` and linear interpolation (`lerp = 0.07`). Elastic damping gently returns grid nodes to precision alignment when the cursor stops.
+  - **Center Typographic Readability Mask**: Applied a dynamic radial opacity mask over the central left region (`SARVANI VADAVALLI` title & primary copy), keeping background motion subdued (~0.05–0.08 opacity) while focusing motion toward outer margins (~0.18–0.25 opacity).
+  - **Accessibility & Compliance**: Respects `@media (prefers-reduced-motion: reduce)` by disabling continuous animation loops and rendering a static technical grid. Palette strictly uses `#09090B`, `#121215`, `#27272A`, `#FAFAFA`, `#A1A1AA`, `#FF2E2E`. Zero forbidden colors or floating particle clouds.
+- **Reason**: Provides visual vitality and mechanical reactivity to the Hero section without competing with typography, portrait asset, or downstream sections.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
 
+---
 
+### Decision 47: Phase 5.2 — Landing True Grid Motion Image Tile Background (`LandingGridMotion.jsx`, `Landing.jsx`)
+- **Decision**: Implemented a true image-tile Grid Motion background system (`LandingGridMotion.jsx`) for the Landing screen based on React Bits Grid Motion architecture.
+- **Details**:
+  - **4-Row Image Grid Architecture**: Replaced text tiles and sparse fragment canvas with 4 horizontal rows of large rectangular visual image tiles (`w-[240px..360px] h-[140px..210px]`, `border-[#27272A]`, `bg-[#121215]`). Absolutely zero text inside tiles and zero text labels.
+  - **Curated Monochrome Editorial Imagery**: Curated pool of high-contrast monochrome architectural, structural, and mechanical photography (brutalist concrete facades, steel beam frameworks, geometric shadow planes) treated with CSS `grayscale(100%) contrast(125%) brightness(75%)` to align strictly with `#09090B` dark backdrop.
+  - **Alternating Continuous Motion & Mouse Inertia**: Alternating row motion directions (Odd rows drift right, even rows drift left) with continuous horizontal sliding when pointer is stationary. Pointer X movement applies smooth linear interpolation inertia (`lerp = 0.05`) across rows without per-frame React re-renders.
+  - **Center Protection Mask**: Central radial dark gradient mask (`radial-gradient(circle at center, rgba(9,9,11,0.72) 0%, rgba(9,9,11,0.88) 55%, rgba(9,9,11,0.96) 90%)`) preserves 100% crispness and legibility for `WELCOME TO MY WORK.` and Landing metadata.
+  - **Exact Content & Transition Protection**: Preserved all approved Landing typography (`SARVANI.`, `PORTFOLIO ENTRY // 2026`, `INTERACTIVE ARCHITECTURE`, `WELCOME TO MY WORK.` with terminal red period, `[ ENTER ]`, `SCROLL TO ENTER ↓`) and portfolio entry transition logic.
+  - **Accessibility**: Full `@media (prefers-reduced-motion: reduce)` fallback rendering static image tiles. Zero forbidden colors.
+- **Reason**: Provides a memorable, high-impact, interactive editorial entrance that visually communicates through brutalist architectural imagery while keeping foreground typography dominant.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 48: Phase 5.2 Revision — Landing Abstract Distorted Monochrome Panel Grid Motion (`LandingGridMotion.jsx`, `Landing.jsx`)
+- **Decision**: Revised `LandingGridMotion.jsx` visual treatment to replace photographic imagery with abstract procedural distorted monochrome panels ("AcidSquares-like abstract geometry organized into Grid Motion panels").
+- **Details**:
+  - **Zero Photography & Zero Text**: Completely removed all photography, architecture photos, and Unsplash URLs. Absolutely zero text tiles and zero text labels inside panels.
+  - **Abstract Procedural Panels**: Rendered 4 horizontal rows of large rectangular panels (`w-[260px..380px] h-[160px..230px]`, `border-[#27272A]`, `bg-[#121215]`) containing high-contrast procedural wave deformation lines, optical interference bands, and topographic contour curves (`#09090B`, `#121215`, `#27272A`, `#FAFAFA`).
+  - **Preserved 4-Row Grid Motion Physics**: Kept alternating horizontal continuous drift (Row 0 right, Row 1 left, Row 2 right, Row 3 left) and pointer X inertia displacement (`rAF` lerp physics = 0.05).
+  - **Center Protection Mask & Readability**: Central radial dark gradient mask preserves 100% legibility and contrast for `WELCOME TO MY WORK.` and Landing metadata.
+  - **Exact Landing Content & Transition Logic**: Preserved all approved Landing copy (`SARVANI.`, `PORTFOLIO ENTRY // 2026`, `INTERACTIVE ARCHITECTURE`, `WELCOME TO MY WORK.` with terminal red period, `[ ENTER ]`, `SCROLL TO ENTER ↓`) and entry transition trigger handlers.
+  - **Accessibility**: Respects `@media (prefers-reduced-motion: reduce)` with static panel composition. Zero forbidden colors.
+- **Reason**: Replaces photographic tiles with an experimental, brutalist, distorted graphic visual language while retaining the signature Grid Motion movement and pointer reactivity.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 49: Phase 5.2 — Landing Grid Motion Optical Lens Reference Panels (`LandingGridMotion.jsx`, `Landing.jsx`)
+- **Decision**: Updated `LandingGridMotion.jsx` tile visual renderer to match the exact visual reference image provided by the user (optical lens distortion panels with fine vertical ribs and crisp semicircular shadow cutouts).
+- **Details**:
+  - **Reference-Matching Tile Renderer**: Created `OpticalLensPanel` component rendering a procedural optical lens pattern matching the reference image: off-white/silver-grey base (`#FAFAFA` / `#E4E4E7`), circular lens distortion field, fine vertical ribbed scanlines, and a sharp semicircular dark shadow cutout (`#09090B`). Panels feature rounded corners (`rounded-2xl`, `border-[#27272A]`) with deep black gaps (`gap-4 sm:gap-6`).
+  - **28 Seeded Tile Variations**: Generated 28 unique tile variations across 4 horizontal rows by modulating rotation angles (`0°`, `90°`, `180°`, `270°`), shadow cut orientations, lens radii, and scale.
+  - **4-Row Grid Motion Physics**: Retained exact React Bits Grid Motion structure (4 horizontal rows, 7 tiles per row). Rows 0 & 2 drift right; Rows 1 & 3 drift left when stationary. Pointer X movement applies distinct inertia factors per row (`[0.6, -0.4, 0.5, -0.3]`) with `rAF` lerp physics (`lerp = 0.05`).
+  - **Center Protection Overlay**: Radial dark protection gradient mask preserves 100% crispness and contrast for `WELCOME TO MY WORK.` and Landing metadata.
+  - **Zero Downstream Impact**: Hero, Center Flow, About, Capabilities, Projects, Experience, Achievements, Contact, Navbar, Footer, and transition handlers remain 100% untouched.
+- **Reason**: Perfectly aligns the Landing background visual style with the user's reference image while preserving the signature React Bits Grid Motion movement, inertia physics, and typography contrast.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 50: Phase 5.2 — Diagonal Grid Motion Alignment & Trajectory (`LandingGridMotion.jsx`)
+- **Decision**: Oriented the Grid Motion row tracks onto a tilted diagonal axis (-14° rotation) matching the angled perspective of the reference image, with blocks sliding continuously along the diagonal vector.
+- **Details**:
+  - **Angled Track Rotation**: Rotated the row container by `-14deg` with `scale(1.18)`, spanning 5 rows of optical lens panels to ensure seamless edge-to-edge coverage across all screen ratios without horizontal page overflow.
+  - **Diagonal Movement & Inertia**: Alternating tracks slide continuously along the tilted -14° diagonal axis. Pointer movement along the diagonal axis applies smooth lerp inertia (`lerp = 0.05`), responding elastically to cursor gestures.
+  - **Reference Aesthetics & Typography**: Preserved the procedural `OpticalLensPanel` visual styling (spherical lens distortion, vertical ribs, semicircular dark shadow cutout, rounded corners) and the central dark protection vignette layer over `WELCOME TO MY WORK.`.
+- **Reason**: Aligns the physical movement direction with the user's explicit aesthetic preference for diagonal sliding, directly reflecting the diagonal angle in the visual reference image.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 51: Phase 5.2 — Minimalist Landing Typography Refinement (`Landing.jsx`)
+- **Decision**: Removed `INTERACTIVE ARCHITECTURE`, `PORTFOLIO ENTRY // 2026`, and `SCROLL TO ENTER ↓` from the Landing screen to create a pure, high-impact minimalist composition.
+- **Details**:
+  - **Removed Text Elements**: Removed top-right label `PORTFOLIO ENTRY // 2026`, subtitle tag `INTERACTIVE ARCHITECTURE`, and bottom footer text `SCROLL TO ENTER ↓`.
+  - **Preserved Core Hierarchy**: Kept top-left branding `SARVANI.` and centered focal headline `WELCOME TO MY WORK.` with terminal red dot followed by monospace trigger `[ ENTER ]`.
+  - **Maintained Interactions**: Portfolio entry triggers remain 100% active (click `[ ENTER ]`, keyboard `Enter`, mouse wheel downward scroll, mobile upward swipe).
+- **Reason**: Enhances visual focus and brutalist editorial clarity by eliminating secondary descriptive copy, allowing the centered title and diagonal optical lens Grid Motion background to take full focus.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 52: Phase 5.3 — Hero Portrait: Replace Profile Card with Physics-Based Lanyard (`Lanyard.jsx`, `HeroImage.jsx`)
+- **Decision**: Replaced the Hero portrait `ProfileCard` CSS tilt card with a full 3D physics-based React Bits Lanyard component (`@react-three/fiber`, `@react-three/drei`, `@react-three/rapier`, `meshline`, `three`, `card.glb`, `lanyard.png`).
+- **Details**:
+  - **Removed Old ProfileCard**: Completely removed all remnants of the old `ProfileCard` (CSS transforms, tilt refs, behind-glow radial blur, and angled offset background outline).
+  - **Physics Architecture**: Implemented real Rapier 3D rigid body and rope joint physics (`useRopeJoint`, `useSphericalJoint`, `BallCollider`, `CuboidCollider`) with Catmull-Rom spline rope deformation, pointer dragging with pointer capture, gravity `[0, -40, 0]`, velocity awakening, and natural settling.
+  - **Editorial Card Texture Compositing**: Built an integrated canvas atlas compositing engine directly in `Lanyard.jsx`:
+    - **Front Face (`FRONT_UV_RECT`)**: Incorporates the owner's actual portrait (`src/assets/1.jpeg`) with a focused high-definition crop on Sarvani (head + upper torso), an editorial desaturated high-contrast monochrome filter (`grayscale(80%) contrast(124%) brightness(100%) saturate(20%)`), sharp red corner tick markers (`#FF2E2E`), and bottom information strip (`#09090B` / `#27272A`) displaying only the red square indicator and `SARVANI VADAVALLI` (#FAFAFA), with `FIGURE // 01` removed for a clean, focused editorial layout. Zero HTML overlay is rendered on top of the physical card.
+    - **Back Face (`BACK_UV_RECT`)**: Renders a deep dark brutalist ID badge credential plate with technical grid lines, red corner markers, system credential metadata, and barcode elements.
+  - **Lanyard Band Treatment**: Integrated `src/assets/lanyard.png` tinted to dark zinc border tone (`#27272A`) for a physical, restrained badge strap appearance without harsh white tones.
+  - **Restrained Lighting & Aesthetic**: White ambient + directional Lightformer lighting without neon, bloom, glassmorphism, or holographic effects. Strictly respects portfolio palette (`#09090B`, `#121215`, `#27272A`, `#FAFAFA`, `#A1A1AA`, `#FF2E2E`).
+  - **High-Definition Portrait Framing & Texture Clarity**:
+    - Replaced full-canopy framing with a focused, cropped portrait composition (`cropH = 580`, `cropY = 0.28`), zooming in directly on Sarvani from the upper torso and head up, increasing facial pixel density by over 2.5x.
+    - Upgraded dynamic texture atlas resolution to `2400x2400` with `imageSmoothingQuality = 'high'`.
+    - Configured `CanvasTexture` with `minFilter = THREE.LinearFilter`, `magFilter = THREE.LinearFilter`, and `generateMipmaps = false` to completely eliminate Three.js perspective mipmap downsampling blur.
+    - Optimized physical material parameters (`roughness={0.15}`, `metalness={0.0}`) so the diffuse image is crisp, high-contrast, and punchy without foggy roughness scattering.
+  - **Enlarged Physical Scale**: Scaled the card mesh to `3.6` and adjusted camera framing (`position={[0, -0.65, 12.8]}`) with container `max-w-[500px]`, giving the portrait card an immediate, commanding presence matching the left-side typography.
+  - **Instant Arrival (Background Pre-Warming)**: Pre-mounted the main app shell (`fixed inset-0 pointer-events-none opacity-0`) while on the Landing screen. Three.js, Rapier WASM, `card.glb`, and the composite canvas textures are fully initialized and settled before the user clicks Enter, ensuring **instant visual arrival with zero delay or pop-in lag**.
+  - **Zero Downstream Impact**: Landing, Center Flow, and downstream sections remain completely untouched.
+- **Reason**: Delivers an immediate, commanding, tactile, and physical editorial ID badge experience with crisp legibility and zero arrival latency.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
 

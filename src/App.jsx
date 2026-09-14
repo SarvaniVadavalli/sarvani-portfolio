@@ -50,8 +50,14 @@ export default function App() {
       {/* Sticky Navigation Header (Revealed after entry) */}
       <Navbar isVisible={hasEntered} />
 
-      {/* Main Content Shell */}
-      <main className={`flex-1 ${!hasEntered && !isEntering ? 'hidden' : 'block'}`}>
+      {/* Main Content Shell (Pre-mounted in background for instant WebGL/Lanyard warm-up) */}
+      <main
+        className={`flex-1 transition-opacity duration-700 ${
+          !hasEntered && !isEntering
+            ? 'opacity-0 pointer-events-none fixed inset-0 -z-50 overflow-hidden'
+            : 'opacity-100 relative z-10'
+        }`}
+      >
         
         {/* Section 1: Hero Interactive Section (Phase 3.1 & 3.2) */}
         <Hero />

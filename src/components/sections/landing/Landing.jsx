@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import RippleGrid from '../../animations/RippleGrid';
+import LandingGridMotion from '../../animations/LandingGridMotion';
 
 export default function Landing({ onEnter, isEntering = false }) {
   const isTriggeredRef = useRef(false);
@@ -57,43 +57,18 @@ export default function Landing({ onEnter, isEntering = false }) {
         isEntering ? 'opacity-0 scale-98 pointer-events-none filter blur-sm' : 'opacity-100 scale-100'
       }`}
     >
-      {/* Background RippleGrid Shader Layer */}
-      <RippleGrid
-        className="z-0"
-        isEntering={isEntering}
-        enableRainbow={false}
-        gridColor="#3F3F46"
-        rippleIntensity={0.045}
-        gridSize={12.5}
-        gridThickness={5}
-        mouseInteraction={true}
-        mouseInteractionRadius={0.65}
-        opacity={0.55}
-        fadeDistance={1.8}
-        vignetteStrength={1.7}
-        glowIntensity={0.025}
-        gridRotation={0}
-        lightMode={false}
-      />
+      {/* Background True Grid Motion Image Layer */}
+      <LandingGridMotion className="z-0" isEntering={isEntering} />
 
       {/* Top Editorial Identity Bar */}
       <header className="relative z-10 flex items-center justify-between font-mono-tech text-xs uppercase tracking-widest text-[#A1A1AA] border-b border-[#27272A]/80 pb-4">
         <div className="font-display font-bold text-lg sm:text-xl tracking-wider text-[#FAFAFA]">
           SARVANI<span className="text-[#FF2E2E]">.</span>
         </div>
-        <div className="flex items-center gap-2 text-[11px] text-[#A1A1AA]">
-          <span className="w-1.5 h-1.5 bg-[#FF2E2E]" aria-hidden="true" />
-          <span>PORTFOLIO ENTRY // 2026</span>
-        </div>
       </header>
 
       {/* Center Main Hero Entrance Callout */}
       <main className="relative z-10 mx-auto my-auto text-center flex flex-col items-center justify-center max-w-4xl animate-fade-in px-4 space-y-6 sm:space-y-8">
-        <div className="font-mono-tech text-xs sm:text-sm uppercase tracking-widest text-[#A1A1AA] flex items-center justify-center gap-2">
-          <span className="w-1.5 h-1.5 bg-[#FF2E2E]" aria-hidden="true" />
-          <span>INTERACTIVE ARCHITECTURE</span>
-        </div>
-
         <h1 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-tight text-[#FAFAFA] text-center">
           WELCOME TO MY<br />WORK<span className="text-[#FF2E2E]">.</span>
         </h1>
@@ -110,12 +85,8 @@ export default function Landing({ onEnter, isEntering = false }) {
         </div>
       </main>
 
-      {/* Bottom Editorial Scroll Instruction */}
-      <footer className="relative z-10 flex items-center justify-end font-mono-tech text-xs uppercase tracking-widest text-[#A1A1AA] border-t border-[#27272A]/80 pt-4">
-        <div className="flex items-center gap-2 text-[#A1A1AA] hover:text-[#FAFAFA] transition-colors">
-          <span>SCROLL TO ENTER ↓</span>
-        </div>
-      </footer>
+      {/* Bottom Editorial Baseline */}
+      <footer className="relative z-10 border-t border-[#27272A]/80 min-h-[16px]" />
     </div>
   );
 }
