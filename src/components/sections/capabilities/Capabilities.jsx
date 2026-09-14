@@ -151,25 +151,6 @@ export default function Capabilities() {
   return (
     <Section id="capabilities" aria-label="Capabilities — Technical Editorial Index">
       <div ref={sectionRef} className="space-y-10 md:space-y-12">
-        
-        {/* Top Header Annotation Strip */}
-        <div
-          className={`flex items-center justify-between pb-4 border-b border-[#27272A] font-mono-tech text-xs tracking-wider transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:transform-none ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-          }`}
-        >
-          <div className="flex items-center gap-3 text-[#FAFAFA]">
-            <span className="h-2 w-2 bg-[#FF2E2E] inline-block" aria-hidden="true" />
-            <span className="font-semibold uppercase tracking-wider">
-              CAPABILITIES // TECHNICAL SYSTEM
-            </span>
-          </div>
-          <div className="text-[#A1A1AA] uppercase flex items-center gap-2">
-            <span>SPECIFICATION MATRIX</span>
-            <span className="text-[#27272A]">//</span>
-            <span className="text-[#FAFAFA]">04 MODULES</span>
-          </div>
-        </div>
 
         {/* Section Headline Block */}
         <div

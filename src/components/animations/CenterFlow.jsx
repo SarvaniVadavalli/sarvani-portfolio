@@ -1,17 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 
 const NODES = [
-  { id: 'about', index: '01', label: 'ABOUT', preview: 'Profile + focus', href: '#about', angle: -90 },
-  { id: 'capabilities', index: '02', label: 'CAPABILITIES', preview: 'Skills + stack', href: '#capabilities', angle: -30 },
-  { id: 'projects', index: '03', label: 'PROJECTS', preview: 'Selected work', href: '#projects', angle: 30 },
-  { id: 'experience', index: '04', label: 'EXPERIENCE', preview: 'Journey + roles', href: '#experience', angle: 90 },
-  { id: 'achievements', index: '05', label: 'ACHIEVEMENTS', preview: 'Recognition', href: '#achievements', angle: 150 },
-  { id: 'contact', index: '06', label: 'CONTACT', preview: "Let's connect", href: '#contact', angle: 210 },
+  { id: 'about', index: '01', label: 'ABOUT', preview: 'Profile + focus', targetIndex: 3, angle: -90 },
+  { id: 'capabilities', index: '02', label: 'CAPABILITIES', preview: 'Skills + stack', targetIndex: 4, angle: -18 },
+  { id: 'projects', index: '03', label: 'PROJECTS', preview: 'Selected work', targetIndex: 5, angle: 54 },
+  { id: 'achievements', index: '04', label: 'ACHIEVEMENTS', preview: 'Recognition', targetIndex: 6, angle: 126 },
+  { id: 'contact', index: '05', label: 'CONTACT', preview: "Let's connect", targetIndex: 7, angle: 198 },
 ];
 
-export default function CenterFlow() {
+export default function CenterFlow({ onNavigateToSection }) {
   const containerRef = useRef(null);
-  const [activeSection, setActiveSection] = useState('');
   const [hoveredNode, setHoveredNode] = useState(null);
   const [dimensions, setDimensions] = useState({
     width: typeof window !== 'undefined' ? Math.min(window.innerWidth - 32, 1200) : 1000,
@@ -41,7 +39,7 @@ export default function CenterFlow() {
         setIsTablet(tablet);
 
         // Compute container height based on width for dynamic responsive canvas
-        const calcHeight = mobile ? 460 : tablet ? 500 : 540;
+        const calcHeight = mobile ? 500 : tablet ? 560 : 620;
         setDimensions({
           width: w,
           height: calcHeight,
@@ -70,36 +68,19 @@ export default function CenterFlow() {
     };
   }, []);
 
-  // IntersectionObserver to highlight currently active section
-  useEffect(() => {
-    const sectionIds = NODES.map((n) => n.id);
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, {
-      rootMargin: '-30% 0px -40% 0px',
-      threshold: 0.1,
-    });
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   const centerX = dimensions.width / 2;
   const centerY = dimensions.height / 2;
 
-  // Responsive radial distances
-  const radiusX = isMobile ? 120 : isTablet ? 170 : 220;
-  const radiusY = isMobile ? 140 : isTablet ? 180 : 200;
+  // Responsive radial distances (Enlarged for enhanced visual composition)
+  const radiusX = isMobile ? 145 : isTablet ? 210 : 275;
+  const radiusY = isMobile ? 160 : isTablet ? 215 : 240;
+
+  const handleNodeClick = (e, targetIndex) => {
+    e.preventDefault();
+    if (onNavigateToSection) {
+      onNavigateToSection(targetIndex);
+    }
+  };
 
   return (
     <div
@@ -115,7 +96,6 @@ export default function CenterFlow() {
         aria-hidden="true"
       >
         <defs>
-          {/* Subtle glow filter for active pulses */}
           <filter id="pulse-glow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="1.5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
@@ -127,9 +107,7 @@ export default function CenterFlow() {
           const nodeX = centerX + Math.cos(rad) * radiusX;
           const nodeY = centerY + Math.sin(rad) * radiusY;
           
-          const isActive = activeSection === node.id;
           const isHovered = hoveredNode === node.id;
-          const isHighlighted = isActive || isHovered;
 
           return (
             <g key={`line-${node.id}`}>
@@ -141,7 +119,7 @@ export default function CenterFlow() {
                 y2={nodeY}
                 stroke="#27272A"
                 strokeWidth="1"
-                strokeOpacity={isHighlighted ? "0.8" : "0.35"}
+                strokeOpacity={isHovered ? "0.8" : "0.35"}
               />
 
               {/* Foreground interactive line */}
@@ -150,18 +128,18 @@ export default function CenterFlow() {
                 y1={centerY}
                 x2={nodeX}
                 y2={nodeY}
-                stroke={isHighlighted ? '#FF2E2E' : '#3F3F46'}
-                strokeWidth={isHighlighted ? '1.5' : '1'}
-                strokeDasharray={isHighlighted ? 'none' : '3 3'}
+                stroke={isHovered ? '#FF2E2E' : '#3F3F46'}
+                strokeWidth={isHovered ? '1.5' : '1'}
+                strokeDasharray={isHovered ? 'none' : '3 3'}
                 className="transition-all duration-300"
               />
 
               {/* Animated Red Signal Pulse (Disabled if reduced motion) */}
               {!isReducedMotion && (
                 <circle
-                  r={isHighlighted ? '3' : '2'}
+                  r={isHovered ? '3' : '2'}
                   fill="#FF2E2E"
-                  filter={isHighlighted ? 'url(#pulse-glow)' : undefined}
+                  filter={isHovered ? 'url(#pulse-glow)' : undefined}
                 >
                   <animateMotion
                     path={`M ${centerX} ${centerY} L ${nodeX} ${nodeY}`}
@@ -210,8 +188,6 @@ export default function CenterFlow() {
         const rad = (node.angle * Math.PI) / 180;
         const nodeX = centerX + Math.cos(rad) * radiusX;
         const nodeY = centerY + Math.sin(rad) * radiusY;
-
-        const isActive = activeSection === node.id;
         const isHovered = hoveredNode === node.id;
 
         return (
@@ -227,15 +203,14 @@ export default function CenterFlow() {
             }}
           >
             <a
-              href={node.href}
+              href={`#${node.id}`}
+              onClick={(e) => handleNodeClick(e, node.targetIndex)}
               onMouseEnter={() => setHoveredNode(node.id)}
               onMouseLeave={() => setHoveredNode(null)}
               onFocus={() => setHoveredNode(node.id)}
               onBlur={() => setHoveredNode(null)}
               className={`relative group px-3 py-2 sm:px-4 sm:py-2.5 bg-[#121215] border transition-all duration-300 flex flex-col items-start gap-0.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF2E2E] ${
-                isActive
-                  ? 'border-[#FF2E2E] text-[#FAFAFA] bg-[#121215] shadow-lg shadow-[#FF2E2E]/10 translate-y-[-1px]'
-                  : isHovered
+                isHovered
                   ? 'border-[#FF2E2E]/80 text-[#FAFAFA] bg-[#18181C] translate-y-[-1px]'
                   : 'border-[#27272A] text-[#A1A1AA] hover:text-[#FAFAFA]'
               }`}
@@ -244,11 +219,7 @@ export default function CenterFlow() {
               <div className="flex items-center gap-2">
                 <span
                   className={`w-1.5 h-1.5 transition-colors duration-300 ${
-                    isActive
-                      ? 'bg-[#FF2E2E]'
-                      : isHovered
-                      ? 'bg-[#FF2E2E]'
-                      : 'bg-[#3F3F46] group-hover:bg-[#FF2E2E]'
+                    isHovered ? 'bg-[#FF2E2E]' : 'bg-[#3F3F46] group-hover:bg-[#FF2E2E]'
                   }`}
                   aria-hidden="true"
                 />
@@ -268,7 +239,7 @@ export default function CenterFlow() {
 
               {/* Micro-preview contextual description */}
               <div className="pl-3.5 font-mono-tech text-[9px] text-[#A1A1AA] tracking-wider transition-opacity duration-200">
-                <span className={isHovered || isActive ? 'text-[#FAFAFA]/90' : 'text-[#A1A1AA]/60'}>
+                <span className={isHovered ? 'text-[#FAFAFA]/90' : 'text-[#A1A1AA]/60'}>
                   "{node.preview}"
                 </span>
               </div>
@@ -279,4 +250,3 @@ export default function CenterFlow() {
     </div>
   );
 }
-

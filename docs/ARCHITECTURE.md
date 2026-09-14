@@ -51,23 +51,17 @@ src/
 
 ---
 
-## 3. Page / Section Navigation Anchor Flow
+## 3. Fullscreen Section Navigation Architecture (Phase 6.0)
 
-1. **`Navbar`** (`sticky top-0 z-50`): Brand logo (`SARVANI.`) pointing to `#hero`, navigation links pointing to `#projects`, `#about`, `#capabilities`, `#experience`, `#achievements`, `#contact`.
-2. **`#hero` Section**: Complete Hero cover featuring `Space Grotesk` display name, 3D Letter Swap, portrait card, and technical metadata matrix.
-3. **`CenterFlowSection` (`#center-flow-nav`)**: Interactive radial node navigation system placed directly after Hero. Outer nodes navigate natively to `#about`, `#capabilities`, `#projects`, `#experience`, `#achievements`, `#contact`.
-4. **`#about` Section**: Structural boundary for bio summary and engineering philosophy.
-5. **`#capabilities` Section**: Structural boundary for technical skills matrix.
-6. **`#projects` Section**: Structural boundary for project showcases grid.
-7. **`#experience` Section**: Structural boundary for career timeline.
-8. **`#achievements` Section**: Structural boundary for key metrics and honors.
-9. **`#contact` Section**: Structural boundary for contact form and links.
-10. **`Footer`**: Copyright, colophon, and top anchor link (`#hero`).
+- **Presentation Model**: Staged full-screen presentation (`PortfolioShell.jsx`). Every section occupies exactly `100vw × 100vh` (`100svh`), completely hiding the next section underneath.
+- **Centralized Controller**: `useSectionNavigation.js` manages state across 9 ordered sections (`00: landing`, `01: hero`, `02: center-flow`, `03: about`, `04: capabilities`, `05: projects`, `06: journey`, `07: achievements`, `08: contact`).
+- **Gesture Engine & Locking**: Handles mouse wheel, trackpad, touch swipe up/down (50px min threshold), and keyboard arrows/page keys. Implements a ~650ms input lock during section transitions to prevent section skipping or overscroll drift.
+- **Structural Transition Overlay**: `SectionTransitionOverlay.jsx` renders mechanical transition indicators (`01 // HERO → 02 // CENTER FLOW`), `#FF2E2E` registration mark, and grid lines.
+- **Component Link Integration**: `Navbar.jsx` and `CenterFlow.jsx` map directly to `goToSection(index)` for direct fullscreen navigation.
 
 ---
 
-## 4. Center Flow Technical Architecture (Phase 4.2)
+## 4. Center Flow Technical Architecture (Phase 4.2 & 6.0)
 
-- **Node-to-Section Mapping**: Native smooth scrolling to destination section anchors with `scroll-mt-16` offset protection.
-- **Active Section Highlighting**: Uses `IntersectionObserver` observing destination IDs (`rootMargin: '-30% 0px -40% 0px'`) to highlight active node with Sharp Red (`#FF2E2E`) border and glowing indicator.
-- **Accessibility & Motion**: All nodes render native keyboard-accessible `<a>` links with high-contrast `:focus-visible` focus rings. Disables line pulse animations when `@media (prefers-reduced-motion: reduce)` is active.
+- **Node-to-Section Mapping**: Radial node clicks trigger `goToSection(index)` via `useSectionNavigation` for instant fullscreen section presentation.
+- **Accessibility & Motion**: All nodes render native keyboard-accessible controls with high-contrast `:focus-visible` focus rings. Disables pulse animations when `@media (prefers-reduced-motion: reduce)` is active.

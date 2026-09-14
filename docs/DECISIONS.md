@@ -706,4 +706,75 @@ This log records all key architectural, technical, visual, and design decisions 
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-14
 
+---
+
+### Decision 39: Projects Showcase — React Bits BounceCards Visual Archive & Technical Inspector
+- **Decision**: Implemented the Projects section (`Projects.jsx`) as an interactive visual project archive using the React Bits `BounceCards` animation philosophy as the hero composition, paired with a persistent side technical metadata inspector (`ProjectInfoPanel.jsx`).
+- **Details**:
+  - **Visual Archive Concept**: Replaced generic project-card grid with a compact stack of 3 overlapping project-preview cards animating into position with a GSAP elastic entrance (`elastic.out(1, 0.5)`), staggered scale-in, and asymmetric transforms (`rotate(-6deg) translateX(-90px)`, `rotate(2deg)`, `rotate(6deg) translateX(90px)`).
+  - **Only Confirmed Resume Projects**:
+    1. **01 — UNIMEET**: Faculty Appointment Management System | MERN Stack (React, Node.js, Express.js, MongoDB, JWT) | Role-Based Dashboards, Protected APIs, Appointment Scheduling.
+    2. **02 — DEEPFAKE IMAGE DETECTION**: CNN-based Deepfake Image Detection | Computer Vision / ML (TensorFlow, OpenCV, NumPy, CNN) | CNN Pipeline, Image Preprocessing, Augmentation, Tuning.
+    3. **03 — HOSPITAL MANAGEMENT SYSTEM**: Relational Database Application | MySQL / Database (MySQL, SQL) | Normalized Schema, CRUD, Stored Procedures, Triggers.
+  - **Editorial Project Plates (`ProjectPreviewCard.jsx`)**: Zero stock images, zero Unsplash, zero generic AI graphics. Visual previews rendered using HTML/CSS typography, geometric structures, technical wireframe lines (dashboard role layout, CNN pipeline block, relational schema tables), and restrained Sharp Red (`#FF2E2E`) corner ticks.
+  - **12-Column Asymmetrical Editorial Split Composition**:
+    - **Left Column (7 Cols)**: Section heading (`PROJECT ARCHIVE.`), BounceCards visual stack, active project quick-selector tags, and arrow navigation cue.
+    - **Right Column (5 Cols)**: Persistent technical metadata inspector (`ProjectInfoPanel.jsx`) displaying active project index, title, domain subtitle, resume-grounded description, stack badges, systems list, and completion status.
+  - **Interactive & Keyboard Controls**: Supports hover, click, and keyboard navigation (`ArrowLeft` / `ArrowRight` to cycle projects, `Enter` / `Space` to select). Active card transitions smoothly into foreground position with subtle sibling offset.
+  - **Accessibility & Motion Control**: Full `@media (prefers-reduced-motion: reduce)` fallback (bypasses elastic entrance animation, sits statically in final layout), explicit `tabIndex={0}` focus rings, and ARIA labels.
+  - **Strict Aesthetics**: Bounded strictly to `#09090B`, `#121215`, `#27272A`, `#FAFAFA`, `#A1A1AA`, `#FF2E2E` (zero glow, zero glassmorphism, zero forbidden colors).
+- **Reason**: Adapts BounceCards into a high-impact, editorial visual archive that showcases Sarvani's real technical projects with precision typography and tactile micro-interaction rather than a generic project card grid.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 40: Phase 6.0 Fullscreen Section Transition System Architecture
+- **Decision**: Converted the portfolio navigation model from a continuous scrolling webpage into a staged, full-screen editorial presentation (`PortfolioShell.jsx`, `useSectionNavigation.js`).
+- **Details**:
+  - **100% Viewport Ownership (`100vw × 100vh / 100svh`)**: Every major portfolio section owns the entire viewport (`overflow: hidden`). The next portfolio section is 100% hidden underneath and never exposed during reading or scrolling.
+  - **Centralized Section Navigation Controller (`useSectionNavigation.js`)**: Manages 9 ordered sections (`00: landing`, `01: hero`, `02: center-flow`, `03: about`, `04: capabilities`, `05: projects`, `06: journey`, `07: achievements`, `08: contact`).
+  - **Gesture Support & Input Locking**: Listens to mouse wheel, trackpad, touch swipe up/down (50px min threshold), arrow keys (`Up`, `Down`, `Left`, `Right`), `PageUp`/`PageDown`, `Home`/`End`. Implements a ~650ms input lock during section transitions to eliminate section skipping, double transitions, or trackpad overscroll drift.
+  - **Techno-Brutalist Structural Transition Overlay (`SectionTransitionOverlay.jsx`)**: Mechanical transition layer displaying section index tags (`01 // HERO → 02 // CENTER FLOW`), `#FF2E2E` registration mark, structural grid lines, and scale/opacity/translation easing (with reduced-motion fallback).
+  - **Direct Component Navigation Integration**: Navbar links (`Navbar.jsx`) and Center Flow radial nodes (`CenterFlow.jsx`) map directly to `goToSection(index)` rather than browser anchor scrolling. Landing entrance triggers (`[ ENTER ]`, wheel down, swipe up, Enter key) navigate directly to Section 01 (Hero).
+- **Reason**: Transforms the portfolio into a high-precision interactive editorial presentation where every section commands undivided attention without continuous webpage scroll clutter.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 41: Phase 6.0A — Complete Removal of Experience Section
+- **Decision**: Completely removed the Experience section from the portfolio application, navigation system, radial node map, and documentation.
+- **Details**:
+  - **Zero Fake Experience**: Because Sarvani does not have formal professional work experience yet, Experience/Journey/Career/Employment was eliminated without creating fake internships or placeholder text.
+  - **Updated 8-Section Sequence**:
+    `00: LANDING` → `01: HERO` → `02: CENTER FLOW` → `03: ABOUT` → `04: CAPABILITIES` → `05: PROJECTS` → `06: ACHIEVEMENTS` → `07: CONTACT`
+  - **Direct Transition**: The portfolio moves directly from `05: PROJECTS` to `06: ACHIEVEMENTS`.
+  - **Center Flow Node Rebalance**: Updated `CenterFlow.jsx` to 5 radial nodes (`01: ABOUT`, `02: CAPABILITIES`, `03: PROJECTS`, `04: ACHIEVEMENTS`, `05: CONTACT`) with geometrically rebalanced radial angles (-90°, -18°, 54°, 126°, 198°).
+  - **Navigation Sync**: Updated `useSectionNavigation.js`, `PortfolioShell.jsx`, `Navbar.jsx`, and `CenterFlowSection.jsx` (`RADIAL INDEX // 05 NODES`).
+- **Reason**: Ensures 100% authenticity to Sarvani's resume facts, eliminating empty or misleading career experience sections while preserving a seamless, balanced 8-section presentation.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+---
+
+### Decision 42: Phase 7.0 — Combined Achievements + Certifications Fullscreen Section
+- **Decision**: Implemented Section 06 (`Achievements.jsx`) as a combined, 100vw × 100vh staged fullscreen section that integrates Achievements and Certifications into an editorial technical record.
+- **Details**:
+  - **Zero Separate Certifications Section**: Consolidated achievements (hackathon honors, LeetCode DSA progress) and certifications into a single composed two-column layout.
+  - **Strict Resume Grounding**:
+    - Achievements: `01: 2nd Place — Unstop Hackathon` (`UNSTOP NATIONAL HACKATHON`), `02: LeetCode & Striver A2Z DSA Progress` (`LEETCODE · STRIVER A2Z SHEET`).
+    - Certifications: `01: MongoDB Associate Developer Certification` (`MongoDB` · `VERIFIED`), `02: Introduction to Computer Vision and Image Processing` (`IBM` · `VERIFIED`), `03: Natural Language Processing with Classification and Vector Spaces` (`RECORDED`). Zero invented providers or credential IDs.
+  - **Two-Column Composition**:
+    - **Left Column (6 Cols)**: `HONORS & HACKATHONS` (Editorial achievement items with monospace index tags, secondary description lines, and hover ticks).
+    - **Right Column (6 Cols)**: `CERTIFICATIONS & CREDENTIALS` (Compact vertical credential registry with status badges).
+  - **Tactile Micro-Interactions**: Hovering any row translates slightly (`translateX(6px)`), illuminates a Sharp Red (`#FF2E2E`) registration tick, and brightens text. Full reduced motion support.
+- **Reason**: Prevents visual overload from repeated card grids while presenting Sarvani's honors and certified skills in an authentic, high-contrast technical record.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+
+
+
+
 

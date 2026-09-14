@@ -2,7 +2,7 @@ import Section from '../../layout/Section';
 import CenterFlow from '../../animations/CenterFlow';
 import GridMotion from '../../animations/GridMotion';
 
-export default function CenterFlowSection() {
+export default function CenterFlowSection({ onNavigateToSection }) {
   return (
     <Section id="center-flow-nav" className="relative py-12 md:py-16 bg-[#09090B] overflow-hidden">
       {/* Background Layer: Animated Technical Text Field (z-0) */}
@@ -20,15 +20,14 @@ export default function CenterFlowSection() {
             <span>EXPLORE // NAVIGATE PORTFOLIO</span>
           </div>
           <span className="font-mono-tech text-[10px] text-[#A1A1AA]/70 uppercase tracking-widest hidden sm:inline">
-            RADIAL INDEX // 06 NODES
+            RADIAL INDEX // 05 NODES
           </span>
         </div>
 
         {/* Center Flow Radial Navigation System */}
-        <CenterFlow />
+        <CenterFlow onNavigateToSection={onNavigateToSection} />
 
       </div>
     </Section>
   );
 }
-
