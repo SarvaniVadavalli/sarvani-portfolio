@@ -571,29 +571,31 @@ This log records all key architectural, technical, visual, and design decisions 
 
 ---
 
-### Decision 53: Phase 6.0 — Capabilities Section Redesign (`Capabilities.jsx`, `App.jsx`)
-- **Decision**: Implemented the redesigned Capabilities section (`#capabilities`) as an asymmetric editorial specification matrix answering "What can Sarvani actually build?" using techno-brutalist aesthetics and interactive specifications.
+### Decision 53: Phase 6.0 — Resume-grounded Capabilities System (`Capabilities.jsx`, `App.jsx`)
+- **Decision**: Implemented the redesigned Capabilities section (`#capabilities`) as an asymmetric editorial specification matrix answering "What can Sarvani build with?", strictly derived from the finalized resume and structured into seven primary capability systems with verified project evidence indicators.
 - **Details**:
   - **Component Structure**: `src/components/sections/capabilities/Capabilities.jsx` mounted via `<Capabilities />` in `App.jsx` inside standard `<Section id="capabilities">`.
-  - **Asymmetric Editorial Layout**:
-    - **Left Column (4 Cols, Desktop Sticky)**: Displays top technical annotation `CAPABILITIES // 04 SYSTEMS` / `SPECIFICATION MATRIX // 05 DOMAINS`, section title `CAPABILITIES.` with terminal `#FF2E2E` dot, technical positioning summary, and a live `INSPECTION CONSOLE` with pulsing red `LIVE` beacon showing current active domain title, index (`01 // 05`), and total unit count (`33 TECHNOLOGIES`).
-    - **Right Column (8 Cols)**: 5 distinct capability rows with varied horizontal padding, thin `#27272A` borders, active `#FF2E2E` left edge indicator bar, subtle 2–4px horizontal hover translation on technology chips, and expandable specification scope/subsystem highlights (`max-h-0` -> `max-h-32` on hover/focus).
-  - **Strict Technology Scope (Zero Inventions, Zero Fluff)**:
-    - `01 / AI & MACHINE LEARNING`: Python, Scikit-Learn, TensorFlow, Machine Learning, Model Training, Model Evaluation.
-    - `02 / COMPUTER VISION`: OpenCV, NumPy, Image Processing, CNN-based Computer Vision, Deepfake Detection.
-    - `03 / FULL-STACK ENGINEERING`: React, Node.js, Express.js, Vite, Tailwind CSS, REST APIs, JWT Authentication.
-    - `04 / DATA & DATABASES`: MongoDB, MySQL, SQL, Mongoose, Database Design, CRUD / Stored Procedures / Triggers.
-    - `05 / CORE ENGINEERING`: C, C++, JavaScript, Python, Data Structures & Algorithms, OOP, DBMS, Operating Systems, Computer Networks.
-  - **Strict Design System Palette & Geometry**:
-    - Background: `#09090B`, Surface: `#121215`, Borders: `#27272A`, Primary: `#FAFAFA`, Muted: `#A1A1AA`, Accent: `#FF2E2E`.
-    - Corners: `0px` throughout. Zero gradients, zero neon, zero glassmorphism, zero unauthorized accent colors.
-  - **Motion & Accessibility**:
-    - IntersectionObserver sequential scroll entry (translateY: 16px -> 0px, opacity: 0 -> 1 with staggered delays, ~500–800ms total visual sequence).
-    - Full `@media (prefers-reduced-motion: reduce)` support with static display fallback.
-    - Full keyboard navigation with `tabIndex={0}` and visible high-contrast focus rings (`focus-visible:outline-2 focus-visible:outline-[#FF2E2E]`).
-    - Seamless mobile collapse into a single vertical column with zero horizontal overflow.
-  - **Zero Downstream/Upstream Impact**: Landing, Hero, Center Flow, About, Projects, Experience, Achievements, Contact, Navbar, and Footer remain completely untouched.
-- **Reason**: Replaces generic skill card grids with a concrete, high-contrast editorial specification system that immediately communicates Sarvani's engineering range and technical depth in under 10 seconds.
+  - **Header & System Metadata**:
+    - Top annotation strip: `CAPABILITIES // TECHNICAL SYSTEM` (left) and `SPECIFICATION MATRIX // 07 SYSTEMS` (right).
+    - Section display heading: `CAPABILITIES.` with terminal red dot (`#FF2E2E`), system label `07 SYSTEMS`, and supporting line `WHAT I BUILD WITH.`.
+    - Live `INSPECTION CONSOLE`: Synchronously displays active system title, dynamic index (`01 // 07`), and total unit count (`37 TECHNOLOGIES`) with pulsing red `LIVE` beacon.
+  - **Strict Resume-Derived Technology Content (7 Groups, 37 Exact Units, Zero Inventions)**:
+    - `01 / PROGRAMMING`: C, C++, Python, JavaScript, SQL, HTML/CSS | `USED IN // UNIMEET · DEEPFAKE DETECTION · HOSPITAL MANAGEMENT`
+    - `02 / AI / MACHINE LEARNING`: TensorFlow, Scikit-learn, Machine Learning | `USED IN // DEEPFAKE DETECTION`
+    - `03 / COMPUTER VISION`: OpenCV, NumPy, CNN-based Computer Vision, Image Processing | `USED IN // DEEPFAKE DETECTION`
+    - `04 / FULL-STACK ENGINEERING`: React, Node.js, Express.js, Tailwind CSS, REST APIs, JWT Authentication | `USED IN // UNIMEET`
+    - `05 / DATABASES`: MySQL, MongoDB, Database Design, SQL, CRUD Operations, Stored Procedures, Triggers | `USED IN // HOSPITAL MANAGEMENT · UNIMEET`
+    - `06 / CORE ENGINEERING`: Data Structures & Algorithms, Object-Oriented Programming, DBMS, Operating Systems, Computer Networks | `USED IN // SYSTEM ARCHITECTURE & COMPUTATIONAL FOUNDATIONS`
+    - `07 / DEVELOPMENT TOOLS`: Git, GitHub, VS Code, Postman, Docker, Figma | `USED IN // DEVELOPMENT & DEPLOYMENT LIFECYCLE`
+  - **Project Evidence Links ("USED IN")**: Capability rows connect directly to portfolio projects as evidence without duplicating the Projects section.
+  - **Interaction & Responsive Behavior**:
+    - Hovering or focusing a row activates the left `#FF2E2E` edge indicator, subtly shifts the content 3–5px horizontally (`translate-x-1`), changes the index number to red, and syncs the inspection console.
+    - On mobile viewports (400px), cleanly stacks into a single vertical list where technology chips and `USED IN` project citations remain 100% visible without requiring hover. Zero horizontal overflow.
+  - **Strict Palette & Design Tokens**:
+    - `#09090B` (Background), `#121215` (Surface), `#27272A` (Borders), `#FAFAFA` (Primary), `#A1A1AA` (Muted), `#FF2E2E` (Accent).
+    - Corners 0px throughout. Zero gradients, zero neon, zero glassmorphism, zero WebGL.
+  - **Zero Downstream/Upstream Impact**: Landing, Hero, Center Flow, About, Projects, Experience, Achievements, Contact, Navbar, and Footer remain 100% locked.
+- **Reason**: Translates the resume into a structured, high-impact interactive technical specification system that provides concrete proof of Sarvani's engineering range and technical depth.
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-14
 
