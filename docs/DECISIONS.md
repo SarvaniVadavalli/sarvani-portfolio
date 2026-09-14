@@ -698,3 +698,12 @@ This log records all key architectural, technical, visual, and design decisions 
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-14
 
+---
+
+### Decision 38: Removal of Pseudo-System Coordinate & Status Text Blocks
+- **Decision**: Completely removed artificial pseudo-system reference coordinate text (`SYS_REF: 0x53_EDITORIAL INDEX: 04-ROW ASYM STATE: SYNCHRONIZED`) and pseudo-status indicator labels (`STATUS: VERIFIED`, `AUTH_RECORD`) from the bottom of the Capabilities section and inspector panel in `Capabilities.jsx`.
+- **Reason**: Eliminates visual clutter and fake metadata noise, keeping the editorial technical index clean, high-contrast, and authentic.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
+

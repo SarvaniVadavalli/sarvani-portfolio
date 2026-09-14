@@ -375,21 +375,8 @@ export default function Capabilities() {
                   </div>
                 </div>
 
-                {/* Status Indicator */}
-                <div className="pt-3 border-t border-[#27272A] flex items-center justify-between text-[10px] text-[#A1A1AA]">
-                  <span>STATUS: VERIFIED</span>
-                  <span className="text-[#FF2E2E]">AUTH_RECORD</span>
-                </div>
-
               </div>
 
-            </div>
-
-            {/* Micro System Coordinates */}
-            <div className="hidden lg:flex items-center justify-between font-mono-tech text-[10px] text-[#A1A1AA]/60 px-1" aria-hidden="true">
-              <span>SYS_REF: 0x53_EDITORIAL</span>
-              <span>INDEX: 04-ROW ASYM</span>
-              <span>STATE: SYNCHRONIZED</span>
             </div>
           </div>
 
