@@ -627,6 +627,35 @@ This log records all key architectural, technical, visual, and design decisions 
     - Corners: `0px` throughout. Zero gradients, zero neon, zero glassmorphism, zero stock images.
   - **Zero Downstream/Upstream Impact**: Landing, Hero, Center Flow, About, Projects, Experience, Achievements, Contact, Navbar, and Footer remain 100% locked.
 - **Reason**: Solves the excessive vertical page length of the previous card stack while delivering an engaging, tactile, high-density technical inspection experience.
+- **Status**: SUPERSEDED BY DECISION 55
+- **Date**: 2026-09-14
+
+---
+
+### Decision 55: Phase 6.2 — Restore Capabilities Composition + Accordion Interaction (`Capabilities.jsx`)
+- **Decision**: Reverted the single horizontal accordion layout and restored the two-column editorial composition: 7 distinct capability cards in the left/main column paired with a persistent side technical system inspector panel on the right, embedding compact accordion expansion/collapse mechanics inside the cards.
+- **Details**:
+  - **Composition Architecture**:
+    - **Left / Main Column (8 Cols)**: Vertical stack of 7 distinct capability modules (`01 PROGRAMMING` through `07 DEVELOPMENT TOOLS`). In inactive/collapsed state, each card is a compact, streamlined row displaying module index, category title, technology preview string (`C · C++ · Python · JavaScript · SQL · HTML/CSS`), and a `+` indicator. Only one card expands at a time, revealing full operational description, technology badges, left `#FF2E2E` active indicator bar, and `USED IN //` project citation.
+    - **Right Column (4 Cols, Desktop Sticky)**: Persistent technical instrument panel (`CAPABILITY SYSTEM // 07 MODULES`, `● LIVE INSPECTOR` status with pulsing red beacon) displaying the active module number in large Space Grotesk (`01`–`07`), module title and operational label, complete technology stack breakdown, project citation, and `STATUS: VERIFIED` metadata. Synchronously updates via GSAP crossfade whenever the active card changes.
+    - **Mobile Adaptation (< 1024px / 400px)**: Cards stack vertically with click-to-toggle accordion functionality. The side system inspector moves cleanly below the card stack, preserving full layout fidelity with zero horizontal overflow.
+  - **Interactive Mechanics**:
+    - Desktop hover and click activation: Moving between cards activates and expands the target card while collapsing neighbors, simultaneously updating the persistent side inspector.
+    - Keyboard navigation: `ArrowUp` / `ArrowLeft` for previous module, `ArrowDown` / `ArrowRight` for next module, `Enter` / `Space` to activate, with visible `#FF2E2E` focus rings.
+    - Reduced motion: Full `@media (prefers-reduced-motion: reduce)` support with instant transitions.
+  - **Resume Content Grounding (7 Modules, 37 Technologies, Zero Inventions)**:
+    - `01 / PROGRAMMING`: C, C++, Python, JavaScript, SQL, HTML/CSS | `USED IN // UNIMEET · DEEPFAKE DETECTION · HOSPITAL MANAGEMENT`
+    - `02 / AI / MACHINE LEARNING`: TensorFlow, Scikit-learn, Machine Learning | `USED IN // DEEPFAKE DETECTION`
+    - `03 / COMPUTER VISION`: OpenCV, NumPy, CNN, Image Processing | `USED IN // DEEPFAKE DETECTION`
+    - `04 / FULL-STACK ENGINEERING`: React, Node.js, Express.js, Tailwind CSS, REST APIs, JWT Authentication | `USED IN // UNIMEET`
+    - `05 / DATABASES`: MySQL, MongoDB, Database Design, SQL, CRUD Operations, Stored Procedures, Triggers | `USED IN // HOSPITAL MANAGEMENT · UNIMEET`
+    - `06 / CORE ENGINEERING`: Data Structures & Algorithms, Object-Oriented Programming, DBMS, Operating Systems, Computer Networks | `SYSTEM ARCHITECTURE & COMPUTATIONAL FOUNDATIONS`
+    - `07 / DEVELOPMENT TOOLS`: Git, GitHub, VS Code, Postman, Docker, Figma | `DEVELOPMENT & DEPLOYMENT LIFECYCLE`
+  - **Strict Techno-Brutalist Visual Language**:
+    - Palette: `#09090B` (Background), `#121215` (Surface), `#27272A` (Borders), `#FAFAFA` (Primary), `#A1A1AA` (Muted), `#FF2E2E` (Accent).
+    - Corners: `0px` throughout. Zero gradients, zero neon, zero glassmorphism, zero stock images.
+  - **Zero Downstream/Upstream Impact**: Landing, Hero, Center Flow, About, Projects, Experience, Achievements, Contact, Navbar, and Footer remain 100% locked.
+- **Reason**: The previous single horizontal accordion destroyed the intended editorial composition and side inspector hierarchy. Combining the two-column card + persistent inspector layout with compact accordion card expansion achieves the optimal balance of visual structure, reduced vertical repetition, and interactive precision.
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-14
 
