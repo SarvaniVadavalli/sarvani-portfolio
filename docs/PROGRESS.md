@@ -1,9 +1,9 @@
 # Project Progress Tracker
 
-**Current Phase**: Phase 6.0 — Capabilities Section Redesign (Completed)  
+**Current Phase**: Phase 6.1 — Capabilities Accordion System (Completed)  
 **Overall Completion**: 99%  
-**Last Completed Task**: Phase 6.0 — Capabilities Section Redesign: Asymmetric Editorial Specification Matrix (`Capabilities.jsx`, `App.jsx`)  
-**Next Task**: Phase 6.1 / Phase 7 — User Visual Review / Next Section Implementation  
+**Last Completed Task**: Phase 6.1 — Capabilities Accordion System: Compact AccordionGallery-inspired horizontal/vertical specification system (`Capabilities.jsx`)  
+**Next Task**: Phase 6.2 / Phase 7 — User Visual Review / Next Section Implementation  
 
 ---
 
@@ -63,7 +63,7 @@
 
 | Phase 5 | Implement `ProjectsSection` layout & filtering grid | NOT STARTED | Project showcase grid |
 | Phase 5 | Implement `ProjectItem` cards with technical meta | NOT STARTED | High-contrast project cards |
-| Phase 6.0 | Implement Resume-grounded Capabilities System (`Capabilities.jsx`) | COMPLETED | 6 primary capability systems (Computer Vision removed), 33 exact resume technologies, live inspection console, verified "USED IN" project evidence citations |
+| Phase 6.1 | Implement Capabilities Accordion System (`Capabilities.jsx`) | COMPLETED | Compact horizontal/vertical accordion replacing tall cards, 7 resume systems, GSAP animation, Arrow-key navigation, mobile vertical accordion |
 | Phase 6 | Implement `ExperienceSection` timeline | NOT STARTED | Career trajectory timeline |
 | Phase 6 | Implement `AchievementsSection` highlight grid | NOT STARTED | Key metrics & honors |
 | Phase 7 | Implement `ContactSection` interactive form & links | NOT STARTED | Minimal direct contact interface |

@@ -599,3 +599,34 @@ This log records all key architectural, technical, visual, and design decisions 
 - **Status**: CONFIRMED & IMPLEMENTED
 - **Date**: 2026-09-14
 
+---
+
+### Decision 54: Phase 6.1 — Capabilities Accordion System (`Capabilities.jsx`)
+- **Decision**: Replaced the previous vertically stacked card-based layout with a compact, interactive horizontal accordion system (desktop/tablet) and vertical accordion (mobile) inspired by the React Bits AccordionGallery architecture, adapted into a text-first technical specification system.
+- **Details**:
+  - **Dramatically Reduced Vertical Height**: Replaced seven stacked full-width cards with a single unified container (`h-[440px]` on desktop, `h-[460px]` on large displays), cutting vertical scroll distance by over 65%.
+  - **Accordion Gallery Architecture Adaptation**:
+    - Removed all images, photos, media layers, and gallery masks from the React Bits component, translating the interaction into a pure techno-brutalist typography and specification interface.
+    - **Desktop/Tablet Horizontal Mode (`md:flex`)**: 7 horizontal panels side-by-side. Inactive panels remain narrow (`flexGrow: 0.7`) displaying a rotated vertical title (`[writing-mode:vertical-lr]`) and muted monospace index (`01` to `07`). Hovering or clicking expands the target panel (`flexGrow: 4.8`) via GSAP (`gsap.to`, duration 0.55s, ease `power3.out`), revealing the complete category title, subheader label, concise description, verified technology chips, and `USED IN //` project citation with active `#FF2E2E` top indicator line.
+    - **Mobile Vertical Mode (`md:hidden`)**: Cleanly converts into a stacked vertical accordion where each panel header displays `01 / PROGRAMMING`, `02 / AI / MACHINE LEARNING`, etc., with an interactive `+` indicator. Tapping an item expands it smoothly to display description, technology chips, and project links without horizontal overflow.
+  - **Strict Resume Content (7 Groups, Zero Inventions)**:
+    - `01 / PROGRAMMING`: C, C++, Python, JavaScript, SQL, HTML/CSS | `USED IN // UNIMEET · DEEPFAKE DETECTION · HOSPITAL MANAGEMENT`
+    - `02 / AI / MACHINE LEARNING`: TensorFlow, Scikit-learn, Machine Learning | `USED IN // DEEPFAKE DETECTION`
+    - `03 / COMPUTER VISION`: OpenCV, NumPy, CNN, Image Processing | `USED IN // DEEPFAKE DETECTION`
+    - `04 / FULL-STACK ENGINEERING`: React, Node.js, Express.js, Tailwind CSS, REST APIs, JWT Authentication | `USED IN // UNIMEET`
+    - `05 / DATABASES`: MySQL, MongoDB, Database Design, SQL, CRUD Operations, Stored Procedures, Triggers | `USED IN // HOSPITAL MANAGEMENT · UNIMEET`
+    - `06 / CORE ENGINEERING`: Data Structures & Algorithms, Object-Oriented Programming, DBMS, Operating Systems, Computer Networks | `SYSTEM ARCHITECTURE & COMPUTATIONAL FOUNDATIONS`
+    - `07 / DEVELOPMENT TOOLS`: Git, GitHub, VS Code, Postman, Docker, Figma | `DEVELOPMENT & DEPLOYMENT LIFECYCLE`
+  - **Keyboard Navigation & Accessibility**:
+    - Full keyboard support: `ArrowRight` / `ArrowDown` to advance, `ArrowLeft` / `ArrowUp` to go back, `Enter` / `Space` to activate.
+    - High-contrast red focus outline: `focus-visible:outline-2 focus-visible:outline-[#FF2E2E]`.
+    - ARIA tablist/tab roles (`aria-selected`, `aria-controls`, `aria-expanded`).
+    - Full `@media (prefers-reduced-motion: reduce)` fallback with instant transitions.
+  - **Strict Visual Language**:
+    - `#09090B` (Background), `#121215` (Surface), `#27272A` (Borders), `#FAFAFA` (Primary), `#A1A1AA` (Muted), `#FF2E2E` (Accent).
+    - Corners: `0px` throughout. Zero gradients, zero neon, zero glassmorphism, zero stock images.
+  - **Zero Downstream/Upstream Impact**: Landing, Hero, Center Flow, About, Projects, Experience, Achievements, Contact, Navbar, and Footer remain 100% locked.
+- **Reason**: Solves the excessive vertical page length of the previous card stack while delivering an engaging, tactile, high-density technical inspection experience.
+- **Status**: CONFIRMED & IMPLEMENTED
+- **Date**: 2026-09-14
+
